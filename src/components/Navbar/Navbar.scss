@@ -1,0 +1,28 @@
+@import '../../App.scss';
+.navbar {
+   width: 100%;
+   max-width: 180px;
+   &__list {
+      margin-top: 25px; 
+   }
+   &__list-item {
+      color: $light-blue;
+
+   }
+   &__list-ico {
+      height: 15px;
+      width: 15px;
+      margin-right: 10px;
+      fill: $light-blue;
+   }
+   &__list-link {
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      border-radius: $radius;
+      transition: all ease-in $duration;
+      &:hover {
+         background-color: $white;
+      }
+   }
+}

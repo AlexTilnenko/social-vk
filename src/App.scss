@@ -1,0 +1,52 @@
+$blue: #2a5885;
+$light-blue: #2a5885a4;
+$grey: #888888;
+$main-bg: rgb(243, 243, 243);
+$white: #fff;
+$dark: rgb(37, 37, 37);
+
+$duration: 0.1s;
+$radius: 2px;
+
+.container {
+	width: 100%;
+	max-width: 1230px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.main-wrapper {
+	height: calc(100vh - 40px);
+	background-color: $main-bg;
+
+}
+
+.main-container {
+	display: flex;
+	justify-content: space-between;
+}
+.header {
+	height: 40px;
+	width: 100%;
+	background-color: $blue;
+	&__logo svg {
+		width: 35px;
+		height: 35px;
+		fill: #fff;
+	}
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 12px;
+	background-color: $blue;
+	color: $white;
+	border-radius: $radius;
+	transition: all ease-in $duration;
+	&:hover {
+		background-color: lighten($blue, 7%);
+	}
+	&--add-post {
+		border-radius: 0 $radius $radius 0;
+	}
+}
