@@ -1,12 +1,8 @@
-$blue: #2a5885;
-$light-blue: #2a5885a4;
-$grey: #888888;
-$main-bg: rgb(243, 243, 243);
-$white: #fff;
-$dark: rgb(37, 37, 37);
-
-$duration: 0.1s;
-$radius: 2px;
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	color: $dark;
+}
 
 .container {
 	width: 100%;
@@ -18,7 +14,6 @@ $radius: 2px;
 .main-wrapper {
 	height: calc(100vh - 40px);
 	background-color: $main-bg;
-
 }
 
 .main-container {
@@ -38,15 +33,32 @@ $radius: 2px;
 
 .btn {
 	display: inline-block;
-	padding: 8px 12px;
-	background-color: $blue;
-	color: $white;
 	border-radius: $radius;
+	color: $white;
 	transition: all ease-in $duration;
-	&:hover {
-		background-color: lighten($blue, 7%);
-	}
+
 	&--add-post {
+		padding: 8px 12px;
+		background-color: $blue;
 		border-radius: 0 $radius $radius 0;
+		&:hover {
+			background-color: lighten($blue, 7%);
+		}
+	}
+	&--remove-post {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+		width: 14px;
+		height: 14px;
+		opacity: 0.2;
+		svg {
+			width: 100%;
+			height: 100%;
+			color: $blue;
+		}
+		&:hover {
+         opacity: 1;
+      }
 	}
 }

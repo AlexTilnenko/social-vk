@@ -1,7 +1,8 @@
 import React from "react";
+import MyPosts from "./MyPosts/MyPosts";
 
-import "./Profile.scss";
-import avatar from "../../assets/img/avatar.jpg";
+import avatar from "../../../assets/img/avatar.jpg";
+
 function Profile() {
 	return (
 		<div className='profile'>
@@ -27,12 +28,7 @@ function Profile() {
 					</ul>
 				</div>
 			</div>
-			<div className='profile__posts'>
-				<form className='profile__add-post'>
-					<input className='profile__add-post-field' type='text' placeholder='Что у Вас нового?' />
-					<button className='btn btn--add-post'>Добавить</button>
-				</form>
-			</div>
+         <MyPosts/>
 		</div>
 	);
 }

@@ -1,14 +1,14 @@
-@import "../../App.scss";
-
 .profile {
-   margin: 20px 0 0 20px;
+   margin: 25px 0 0 20px;
    flex: 1 1 100%;
    color: $dark;
+   
 	&__header {
 		display: flex;
       padding: 20px;
       background-color: $white;
       border-radius: $radius;
+      box-shadow: $shadow;
 	}
 	&__photo {
       width: 100%;
@@ -50,17 +50,4 @@
 
 	// &__info-social {
 	// }
-
-	&__add-post {
-      margin-top: 15px;
-      display: flex;
-      align-items: center;
-	}
-	&__add-post-field {
-      padding: 8px 12px;
-      flex: 1 1 100%;
-      border-radius: $radius 0 0 $radius;
-      
-	}
-
 }

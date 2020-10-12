@@ -1,4 +1,3 @@
-@import '../../App.scss';
 .navbar {
    width: 100%;
    max-width: 180px;
@@ -23,6 +22,7 @@
       transition: all ease-in $duration;
       &:hover {
          background-color: $white;
+         box-shadow: $shadow;
       }
    }
 }

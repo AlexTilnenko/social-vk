@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.scss';
 import Header from './components/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
-
+import Messages from './components/pages/Messages/Messages';
+import Profile from './components/pages/Profile/Profile';
+import {Route} from "react-router-dom";
 function App() {
   return (
     <div className="App">
@@ -11,7 +11,12 @@ function App() {
       <div className='main-wrapper'>
          <div className='container main-container'>
             <Navbar/>
-            <Profile/>
+            <Route path="/profile">
+               <Profile/>
+            </Route>
+            <Route path="/messages">
+               <Messages/>
+            </Route>
          </div>
       </div>
     </div>
