@@ -1,0 +1,40 @@
+.post {
+   margin-top: 15px;
+   padding: 15px;
+   display: flex;
+   position: relative;
+
+
+   &__author {
+      max-width: 50px;
+      height: 50px;
+      overflow: hidden;
+      border-radius: 50%;
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+   }
+   &__body {
+      flex: 1 1 auto;
+      padding: 10px 20px 35px;
+   }
+   &__text {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+
+   }
+   &__img {
+      overflow: hidden;
+      max-width: 400px;
+      height: 400px;
+      max-width: 500px;
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+   }
+
+}

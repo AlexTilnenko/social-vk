@@ -1,0 +1,117 @@
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	color: $dark;
+}
+
+.container {
+	width: 100%;
+	max-width: 1230px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.main-wrapper {
+	// height: calc(100vh - 40px);
+	background-color: $main-bg;
+}
+
+.main-container {
+	display: flex;
+	justify-content: space-between;
+}
+.header {
+	height: 40px;
+	width: 100%;
+	background-color: $blue;
+	&__logo svg {
+		width: 35px;
+		height: 35px;
+		fill: #fff;
+	}
+}
+
+.btn {
+	display: inline-block;
+	border-radius: $radius;
+	color: $white;
+	transition: all ease-in $duration;
+
+	&--add-form {
+		padding: 8px 12px;
+		background-color: $blue;
+		border-radius: 0 $radius $radius 0;
+		&:hover {
+			background-color: lighten($blue, 7%);
+		}
+	}
+	&--remove-post {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		width: 14px;
+		height: 14px;
+		opacity: 0.2;
+
+		svg {
+			width: 100%;
+			height: 100%;
+			color: $blue;
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+	&--like {
+		font-size: 1.1rem;
+		position: absolute;
+		bottom: 15px;
+		left: 15px;
+		color: $dark;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      svg {
+         width: 15px;
+         height: 15px;
+         transition: all ease-in $duration;
+      }
+	}
+}
+.liked {
+   color: red;
+}
+
+.block {
+	background-color: $white;
+	border-radius: $radius;
+	box-shadow: $shadow;
+}
+
+.avatar {
+	max-width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 50%;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	&--sm {
+		max-width: 30px;
+		height: 30px;
+	}
+}
+
+.add-form {
+	display: flex;
+	align-items: center;
+}
+.add-form-field {
+	padding: 8px 12px;
+	flex: 1 1 100%;
+	border-radius: $radius 0 0 $radius;
+	outline: none;
+	transition: all ease-out $duration;
+}

@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar/Navbar';
-import Messages from './components/pages/Messages/Messages';
-import Profile from './components/pages/Profile/Profile';
+import Messages from './pages/Messages/Messages';
+import Profile from './pages/Profile/Profile';
 import {Route} from "react-router-dom";
+
 function App() {
+
   return (
     <div className="App">
       <Header/>
