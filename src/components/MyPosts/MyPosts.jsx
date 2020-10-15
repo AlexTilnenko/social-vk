@@ -2,6 +2,7 @@ import React from "react";
 import Post from "../Post/Post";
 import { useDispatch } from "react-redux";
 import { addPost, deletePost, likePost } from "../../redux/actions/posts";
+import PropTypes from 'prop-types';
 
 function MyPosts({ posts, avatar }) {
 	const dispatch = useDispatch();
@@ -57,5 +58,10 @@ function MyPosts({ posts, avatar }) {
 		</div>
 	);
 }
+
+MyPosts.propTypes = {
+	posts: PropTypes.array.isRequired,
+	avatar: PropTypes.string,
+};
 
 export default MyPosts;

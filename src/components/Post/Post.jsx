@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import sprite from "../../assets/img/sprite.svg";
 
@@ -32,5 +33,12 @@ function Post({ post, avatar, onDeletePost, onLikePost }) {
 		</div>
 	);
 }
+
+Post.propTypes = {
+	post: PropTypes.object.isRequired,
+	avatar: PropTypes.string,
+	onDeletePost: PropTypes.func.isRequired,
+	onLikePost: PropTypes.func.isRequired
+};
 
 export default Post;

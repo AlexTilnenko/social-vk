@@ -12,7 +12,7 @@ body {
 }
 
 .main-wrapper {
-	// height: calc(100vh - 40px);
+	min-height: 100vh;
 	background-color: $main-bg;
 }
 
@@ -36,7 +36,7 @@ body {
 	border-radius: $radius;
 	color: $white;
 	transition: all ease-in $duration;
-
+   cursor: pointer;
 	&--add-form {
 		padding: 8px 12px;
 		background-color: $blue;
@@ -76,7 +76,17 @@ body {
          height: 15px;
          transition: all ease-in $duration;
       }
-	}
+   }
+   &--follow {
+      
+      border: 1px solid $dark;
+      padding: 4px 8px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $dark;
+   }
 }
 .liked {
    color: red;
@@ -89,6 +99,7 @@ body {
 }
 
 .avatar {
+   display: block;
 	max-width: 50px;
 	height: 50px;
 	overflow: hidden;
@@ -115,3 +126,4 @@ body {
 	outline: none;
 	transition: all ease-out $duration;
 }
+

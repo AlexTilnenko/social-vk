@@ -1,13 +1,12 @@
 import React from "react";
 import MyPosts from "../../components/MyPosts/MyPosts";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Profile() {
 	const { name, city, birth, education, socialUrl, avatarImg } = useSelector(
 		(state) => state.profile
 	);
 	const posts = useSelector((state) => state.posts.activePosts);
-
 	return (
 		<div className='profile'>
 			<div className='profile__header'>

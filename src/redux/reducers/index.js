@@ -2,12 +2,14 @@ import { combineReducers } from 'redux'
 
 import profile from './profile';
 import posts from './posts';
-import messages from './messages';
+import messanger from './messanger';
+import users from './users';
 
 const rootReducer = combineReducers({
    profile,
    posts,
-   messages,
+   messanger,
+   users,
 })
 
 export default rootReducer;

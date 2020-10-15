@@ -15,7 +15,6 @@ const initialState = {
          liked: true
       }
    ]
-
 }
 
 const posts = (state = initialState, action) => {
@@ -23,25 +22,27 @@ const posts = (state = initialState, action) => {
       case 'SET_POSTS':
          return state;
       case 'ADD_POST':
-         let newPosts = [].concat([{
+         const newPost = {
             id: Date.now(),
             text: action.payload,
             img: action.img ? action.img : '',
             likeCount: 0,
             liked: false
-         }], [...state.activePosts])
+         };
          return {
-            activePosts: newPosts 
+            ...state,
+            activePosts: [newPost, ...state.activePosts],
+
          }
       case 'DELETE_POST':{
-         const newPosts = state.activePosts.filter(post => post.id !== action.payload );
          return {
-            activePosts: newPosts
+            activePosts: state.activePosts.filter(post => post.id !== action.payload )
          }
       }
-      case 'LIKE_POST':{
-         const newPosts = 
-            state.activePosts.map(post => {
+      case 'TOGGLE_LIKE_POST':{
+         return {
+            ...state,
+            activePosts: state.activePosts.map(post => {
                if (post.id === action.payload && !post.liked) {
                   return {
                      ...post,
@@ -58,8 +59,6 @@ const posts = (state = initialState, action) => {
                   return post;
                }
             })
-         return {
-            activePosts: newPosts
          }
       }
       default:

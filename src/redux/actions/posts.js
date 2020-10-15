@@ -1,6 +1,6 @@
-export const setPosts = (data) => ({
+export const setPosts = (posts) => ({
    type: 'SET_POSTS',
-   payload: data
+   payload: posts
 });
 
 export const addPost = (value) => ({
@@ -14,6 +14,6 @@ export const deletePost = (id) => ({
 });
 
 export const likePost = (id) => ({
-   type: 'LIKE_POST',
+   type: 'TOGGLE_LIKE_POST',
    payload: id
 });
