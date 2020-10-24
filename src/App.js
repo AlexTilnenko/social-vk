@@ -14,7 +14,7 @@ function App() {
          <Header/>
          <div className='container main-container'>
             <Navbar/>
-            <Route path="/profile">
+            <Route path="/profile/:userId?">
                <Profile/>
             </Route>
             <Route path="/messanger">

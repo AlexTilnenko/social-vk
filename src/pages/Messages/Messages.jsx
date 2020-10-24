@@ -1,24 +1,25 @@
-import React, {useState} from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveDialog, sendMessage } from "../../redux/actions/messanger";
+import { setActiveDialog, sendMessage, changeeNewMessage } from "../../redux/actions/messanger";
 import classNames from "classnames";
 
 import avatar from "../../assets/img/avatar.jpg";
 
 function Messages() {
-	const { dialogs, messages, activeDialogId } = useSelector((state) => state.messanger);
+	const { dialogs, messages, activeDialogId, newMessage } = useSelector(
+		(state) => state.messanger
+	);
    const dispatch = useDispatch();
-   
-   const [message, setMessage] = useState('')
 
    const onMessageChange = (e) => {
-      setMessage(e.target.value);
-   }
-
+      dispatch(changeeNewMessage(e.target.value));
+      console.log(newMessage);
+      
+	};
    const onSendMessage = (e) => {
       e.preventDefault();
-      dispatch(sendMessage(message));
-      setMessage('');
+      dispatch(sendMessage());
+
    }
 
 	const onClickDialog = (id) => {
@@ -33,7 +34,7 @@ function Messages() {
 					return (
 						<div
 							className={classNames("messages__list-item", {
-								"active-dialog": activeDialogId === id,
+								"active-dialog": activeDialogId === id
 							})}
 							key={id}
 							onClick={() => onClickDialog(id)}
@@ -51,10 +52,15 @@ function Messages() {
 				<div className='messages__dialog-body'>
 					{messages[activeDialogId].map((message) => {
 						return (
-							<div className={classNames("message block", {'author': message.author === 'Александр' })} key={message.id}>
+							<div
+								className={classNames("message block", {
+									author: message.author === "Александр"
+								})}
+								key={message.id}
+							>
 								<div className='message__author'>{message.author}</div>
 								<div className='message__time'>{message.time}</div>
-								<div className='message__text'>{message.data.text}</div>
+								<div className='message__text'>{message.text}</div>
 							</div>
 						);
 					})}
@@ -62,8 +68,8 @@ function Messages() {
 				<div className='messages__dialog-form'>
 					<form className='add-form' onSubmit={onSendMessage}>
 						<input
-                     onChange={onMessageChange}
-                     value={message}
+							onChange={onMessageChange}
+							value={newMessage}
 							className='add-form-field'
 							type='text'
 							placeholder='Напишите текст сообщения...'

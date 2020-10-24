@@ -24,7 +24,7 @@ const posts = (state = initialState, action) => {
       case 'ADD_POST':
          const newPost = {
             id: Date.now(),
-            text: action.payload,
+            text: action.newPostValue,
             img: action.img ? action.img : '',
             likeCount: 0,
             liked: false
@@ -36,20 +36,21 @@ const posts = (state = initialState, action) => {
          }
       case 'DELETE_POST':{
          return {
-            activePosts: state.activePosts.filter(post => post.id !== action.payload )
+            ...state,
+            activePosts: state.activePosts.filter(post => post.id !== action.id )
          }
       }
       case 'TOGGLE_LIKE_POST':{
          return {
             ...state,
             activePosts: state.activePosts.map(post => {
-               if (post.id === action.payload && !post.liked) {
+               if (post.id === action.id && !post.liked) {
                   return {
                      ...post,
                      likeCount: ++post.likeCount,
                      liked: true
                   }
-               } else if (post.id === action.payload && post.liked) {
+               } else if (post.id === action.id && post.liked) {
                   return {
                      ...post,
                      likeCount: --post.likeCount,

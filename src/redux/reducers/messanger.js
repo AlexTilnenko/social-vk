@@ -9,17 +9,13 @@ const initialState = {
             id: 1423342,
             author: 'Sasha',
             time: '14.10.2020',
-            data: {
-               text: 'Привет'
-            }
+            text: 'Привет'
          },
          {
             id: 2,
             author: 'Александр',
             time: '15.10.2020',
-            data: {
-               text: 'Привет, как дела?'
-            }
+            text: 'Привет, как дела?'
          }
       ],
       2: [
@@ -27,21 +23,18 @@ const initialState = {
             id: 1345,
             author: 'Masha',
             time: '14.10.2020',
-            data: {
-               text: 'Привет'
-            }
+            text: 'Привет'
          },
          {
             id: 23242,
             author: 'Александр',
             time: '16.10.2020',
-            data: {
-               text: 'Привет, здорово что ты пользуешься моей соц. сетью.'
-            }
+            text: 'Привет, здорово что ты пользуешься моей соц. сетью.'
          }
       ]
    },
-   activeDialogId: 1
+   activeDialogId: 1,
+   newMessage: ''
 }
 
 const messanger = (state = initialState, action) => {
@@ -49,7 +42,7 @@ const messanger = (state = initialState, action) => {
       case 'SET_ACTIVE_DIALOG':
          return {
             ...state,
-            activeDialogId: action.payload
+            activeDialogId: action.activeDialogId
          }
       case 'SEND_MESSAGE':
          const date = new Date();
@@ -58,17 +51,20 @@ const messanger = (state = initialState, action) => {
             id: Date.now(),
             author: 'Александр',
             time: fullDate,
-            data: {
-               text: action.payload
-            }
+            text: state.newMessage
          }
          return {
             ...state,
             messages: {
                ...state.messages,
                [state.activeDialogId]: [...state.messages[state.activeDialogId], newMessage]
-            }
+            },
+            newMessage: ''
          }
+      case 'CHANGE_NEW_MESSAGE':
+         return {
+            ...state,
+            newMessage: action.messageValue}
       default:
          return state;
    }

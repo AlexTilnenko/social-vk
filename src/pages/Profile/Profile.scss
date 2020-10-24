@@ -26,26 +26,19 @@
 		flex: 1 1 100%;
 	}
 	&__info-list {
-		li {
-			padding: 8px;
-			span {
-				color: $grey;
-				margin-right: 5px;
-			}
-		}
-	}
 
-	&__info-name {
+   }
+   &__info-item {
+      padding: 8px;
+      span {
+         color: $grey;
+         margin-right: 5px;
+      }
+   }
+
+	&__info--name {
 		font-size: 1.8rem;
 		border-bottom: 1px solid $grey;
 	}
 
-	// &__info-city {
-	// }
-
-	// &__info-education {
-	// }
-
-	// &__info-social {
-	// }
 }

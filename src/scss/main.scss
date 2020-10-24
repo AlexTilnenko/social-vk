@@ -1,5 +1,6 @@
 @import "./null";
 @import "./variables";
+@import "./../components/Loader/Loader";
 @import "./App";
 @import "../components/Navbar/Navbar";
 @import "../pages/Profile/Profile";
@@ -7,3 +8,4 @@
 @import "../components/Post/Post";
 @import "../pages/Messages/Messages";
 @import "../pages/Users/Users";
+

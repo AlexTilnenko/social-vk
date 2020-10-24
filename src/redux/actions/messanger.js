@@ -1,9 +1,13 @@
 export const setActiveDialog = (id) => ({
    type: 'SET_ACTIVE_DIALOG',
-   payload: id
+   activeDialogId: id
 });
 
-export const sendMessage = (value) => ({
-   type: 'SEND_MESSAGE',
-   payload: value
+export const sendMessage = () => ({
+   type: 'SEND_MESSAGE'
+});
+
+export const changeeNewMessage = (value) => ({
+   type: 'CHANGE_NEW_MESSAGE',
+   messageValue: value
 });
