@@ -12,7 +12,7 @@ function Profile(props) {
 
    useEffect(() => {
       dispatch(fetchUserProfile(props.match.params.userId));
-   }, [])
+   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	const {
 		fullName,

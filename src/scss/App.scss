@@ -20,16 +20,6 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
-.header {
-	height: 40px;
-	width: 100%;
-	background-color: $blue;
-	&__logo svg {
-		width: 35px;
-		height: 35px;
-		fill: #fff;
-	}
-}
 
 .btn {
 	display: inline-block;
@@ -77,15 +67,22 @@ body {
          transition: all ease-in $duration;
       }
    }
-   &--follow {
-      
-      border: 1px solid $dark;
+   &--follow, &--unfollow {
       padding: 4px 8px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: $dark;
+      transition: all ease-in $duration;
+   }
+   &--follow {
+      border: 1px solid $blue;
+      background-color: $blue;
+      color: $white;
+   }
+   &--unfollow {
+      border: 1px solid $blue;
+      color: $blue;
    }
 }
 .liked {

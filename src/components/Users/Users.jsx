@@ -1,8 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, setCurrentPage, setLoading } from "../../redux/actions/users";
-import { fetchUserProfile } from "../../redux/actions/profile";
+import {
+	fetchUsers,
+	setCurrentPage,
+	setLoading,
+	fetchFollow,
+	fetchUnfollow
+} from "../../redux/actions/users";
 import classNames from "classnames";
 import Loader from "../../components/Loader/Loader";
 
@@ -29,7 +34,15 @@ function Users() {
 	const onPageChange = (page) => {
 		dispatch(setLoading());
 		dispatch(setCurrentPage(page));
-	};
+   };
+   
+   const onClickFollow = (id) => {
+      dispatch(fetchFollow(id))
+   };
+
+   const onClickUnfollow = (id) => {
+      dispatch(fetchUnfollow(id));
+   };
  
 	return (
 		<div className='users'>
@@ -57,7 +70,15 @@ function Users() {
 								</span>
 								<span className='users__item-name'>{name}</span>
 							</Link>
-							<span className='btn btn--follow'>{followed ? "Unfollow" : "Follow"}</span>
+							{followed ? (
+								<span className='btn btn--unfollow' onClick={() => onClickUnfollow(id)}>
+									Unfollow
+								</span>
+							) : (
+								<span className='btn btn--follow' onClick={() => onClickFollow(id)}>
+									Follow
+								</span>
+							)}
 						</li>
 					);
 				})}

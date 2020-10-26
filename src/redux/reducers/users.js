@@ -26,6 +26,20 @@ const users = (state = initialState, action) => {
             ...state,
             loading: true
          }
+      case 'FOLLOW_USER':
+         return {
+            ...state,
+            items: state.items.map(user => {
+               return user.id === action.id ? {...user, followed: true} : user;
+            })
+         }
+      case 'UNFOLLOW_USER':
+         return {
+            ...state,
+            items: state.items.map(user => {
+               return user.id === action.id ? {...user, followed: false} : user;
+            })
+         }
       default:
          return state;
    }

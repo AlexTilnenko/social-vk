@@ -2,10 +2,12 @@
 @import "./variables";
 @import "./../components/Loader/Loader";
 @import "./App";
+@import "../components/Header/Header";
+@import "../components/Login/Login";
 @import "../components/Navbar/Navbar";
-@import "../pages/Profile/Profile";
+@import "../components/Profile/Profile";
 @import "../components/MyPosts/MyPosts";
 @import "../components/Post/Post";
-@import "../pages/Messages/Messages";
-@import "../pages/Users/Users";
+@import "../components/Messages/Messages";
+@import "../components/Users/Users";
 
