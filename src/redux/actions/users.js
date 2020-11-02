@@ -1,15 +1,18 @@
-import axios from 'axios';
-const _apibase = 'https://social-network.samuraijs.com/api/1.0'
+import {usersApi} from '../../api/api';
+
+import {SET_USERS, SET_CURRENT_PAGE, SET_LOADING, FOLLOW_USER, UNFOLLOW_USER, SET_FOLLOWING} from './types';
+
 export const setUsers = (data) => ({
-   type: 'SET_USERS',
+   type: SET_USERS,
    usersData: data
 });
 
 export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
-   axios.get(`${_apibase}/users?page=${currentPage}&count=${pageSize}`, 
-   {withCredentials: true})
+   dispatch(setLoadingProgress(true));
+   usersApi.getUsers(currentPage, pageSize)
    .then(resp => {
-      dispatch(setUsers(resp.data))
+      dispatch(setUsers(resp))
+      dispatch(setLoadingProgress(false));
    })
    .catch((e) => {
       console.log(e);
@@ -17,49 +20,50 @@ export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
 };
 
 export const setCurrentPage = (page) => ({
-   type: 'SET_CURRENT_PAGE',
+   type: SET_CURRENT_PAGE,
    page
 });
 
-export const setLoading = () => ({
-   type: 'SET_LOADING',
+export const setLoadingProgress = (isFetching) => ({
+   type: SET_LOADING,
+   isFetching,
+});
+
+export const setFollowingProgress = (isFetching, id) => ({
+   type: SET_FOLLOWING,
+   isFetching,
+   id
 });
 
 export const fetchFollow = (id) => (dispatch) => {
-   axios.post(`${_apibase}/follow/${id}`, {}, {
-      withCredentials: true, 
-      headers: {
-      'API-KEY': '7e89cefa-3d85-492d-8bfa-d67701158c9f'
+   dispatch(setFollowingProgress(true, id))
+   usersApi.followUser(id)
+   .then(resp => {
+      if (resp.resultCode === 0) {
+         dispatch(follow(id))
       }
+      dispatch(setFollowingProgress(false, id))
    })
-      .then(resp => {
-         if (resp.data.resultCode === 0) {
-            dispatch(follow(id))
-         }
-      })
 };
 
 export const follow = (id) => ({
-   type: 'FOLLOW_USER',
+   type: FOLLOW_USER,
    id
 });
 
 export const fetchUnfollow = (id) => (dispatch) => {
-   axios.delete(`${_apibase}/follow/${id}`, {
-      withCredentials: true, 
-      headers: {
-      'API-KEY': '7e89cefa-3d85-492d-8bfa-d67701158c9f'
+   dispatch(setFollowingProgress(true, id))
+   usersApi.unfollowUser(id)
+   .then(resp => {
+      if (resp.resultCode === 0) {
+         dispatch(unfollow(id))
       }
+      dispatch(setFollowingProgress(false, id))
    })
-      .then(resp => {
-         if (resp.data.resultCode === 0) {
-            dispatch(unfollow(id))
-         }
-      })
 };
 
 export const unfollow = (id) => ({
-   type: 'UNFOLLOW_USER',
+   type: UNFOLLOW_USER,
    id
 });
 

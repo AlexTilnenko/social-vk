@@ -1,3 +1,5 @@
+import {SET_POSTS, ADD_POST, DELETE_POST, TOGGLE_LIKE_POST} from '../actions/types';
+
 const initialState = {
    activePosts: [
       {
@@ -19,9 +21,9 @@ const initialState = {
 
 const posts = (state = initialState, action) => {
    switch(action.type) {
-      case 'SET_POSTS':
+      case SET_POSTS:
          return state;
-      case 'ADD_POST':
+      case ADD_POST:
          const newPost = {
             id: Date.now(),
             text: action.newPostValue,
@@ -34,13 +36,13 @@ const posts = (state = initialState, action) => {
             activePosts: [newPost, ...state.activePosts],
 
          }
-      case 'DELETE_POST':{
+      case DELETE_POST:{
          return {
             ...state,
             activePosts: state.activePosts.filter(post => post.id !== action.id )
          }
       }
-      case 'TOGGLE_LIKE_POST':{
+      case TOGGLE_LIKE_POST:{
          return {
             ...state,
             activePosts: state.activePosts.map(post => {

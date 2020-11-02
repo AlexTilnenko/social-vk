@@ -3,6 +3,14 @@
    width: 400px;
    height: 400px;
    &__body {
-      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+   &__link {
+      margin-top: 50px;
+      padding: 5px 10px;
+      background-color: $blue;
+      color: $white;
    }
 }

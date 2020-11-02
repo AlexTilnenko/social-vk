@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	fetchUsers,
 	setCurrentPage,
-	setLoading,
 	fetchFollow,
 	fetchUnfollow
 } from "../../redux/actions/users";
@@ -16,24 +15,27 @@ import { Link } from "react-router-dom";
 
 function Users() {
 	const dispatch = useDispatch();
-	const { items, pageSize, totalUsersCount, currentPage, loading } = useSelector(
-		(state) => state.users
-	);
+	const {
+		items,
+		pageSize,
+		totalUsersCount,
+		currentPage,
+		isLoading,
+		followingInProgress
+	} = useSelector((state) => state.users);
 
 	useEffect(() => {
-		dispatch(setLoading());
-		dispatch(fetchUsers(currentPage, pageSize));
+      dispatch(fetchUsers(currentPage, pageSize));
 	}, [currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	let pagesCount = Math.ceil(totalUsersCount / pageSize);
 	const pages = [];
-	for (let i = 1; i < pagesCount; i++) {
-		pages.push(i);
+	for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
 	}
 
 	const onPageChange = (page) => {
-		dispatch(setLoading());
-		dispatch(setCurrentPage(page));
+      dispatch(setCurrentPage(page));
    };
    
    const onClickFollow = (id) => {
@@ -46,7 +48,7 @@ function Users() {
  
 	return (
 		<div className='users'>
-			{loading && <Loader />}
+			{isLoading && <Loader />}
 			<ul className='users__pages-list'>
 				{pages.map((page) => (
 					<li
@@ -71,13 +73,21 @@ function Users() {
 								<span className='users__item-name'>{name}</span>
 							</Link>
 							{followed ? (
-								<span className='btn btn--unfollow' onClick={() => onClickUnfollow(id)}>
+								<button
+									className='btn btn--unfollow'
+									onClick={() => onClickUnfollow(id)}
+									disabled={followingInProgress.some((item) => item === id)}
+								>
 									Unfollow
-								</span>
+								</button>
 							) : (
-								<span className='btn btn--follow' onClick={() => onClickFollow(id)}>
+								<button
+									className='btn btn--follow'
+									onClick={() => onClickFollow(id)}
+									disabled={followingInProgress.some((item) => item === id)}
+								>
 									Follow
-								</span>
+								</button>
 							)}
 						</li>
 					);

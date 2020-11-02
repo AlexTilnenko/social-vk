@@ -4,7 +4,7 @@ function Login() {
    return (
 		<div className='login block'>
 			<div className='login__body'>
-				<a
+				<a className='login__link'
 					href='https://social-network.samuraijs.com/'
 					target='_blank'
 					rel='noopener noreferrer'

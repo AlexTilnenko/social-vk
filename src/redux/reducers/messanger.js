@@ -1,3 +1,5 @@
+import {SET_ACTIVE_DIALOG, SEND_MESSAGE, CHANGE_NEW_MESSAGE} from '../actions/types';
+
 const initialState = {
    dialogs: [
       {id: 1, name: 'Sasha'},
@@ -39,12 +41,12 @@ const initialState = {
 
 const messanger = (state = initialState, action) => {
    switch(action.type) {
-      case 'SET_ACTIVE_DIALOG':
+      case SET_ACTIVE_DIALOG:
          return {
             ...state,
             activeDialogId: action.activeDialogId
          }
-      case 'SEND_MESSAGE':
+      case SEND_MESSAGE:
          const date = new Date();
          const fullDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear();
          const newMessage = {
@@ -61,7 +63,7 @@ const messanger = (state = initialState, action) => {
             },
             newMessage: ''
          }
-      case 'CHANGE_NEW_MESSAGE':
+      case CHANGE_NEW_MESSAGE:
          return {
             ...state,
             newMessage: action.messageValue}

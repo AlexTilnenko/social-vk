@@ -1,14 +1,15 @@
-import axios from 'axios';
-const _apibase = 'https://social-network.samuraijs.com/api/1.0'
+import {profileApi} from '../../api/api';
+import {SET_PROFILE} from './types';
+
 export const  setProfile = (data) => ({
-   type: 'SET_PROFILE',
+   type: SET_PROFILE,
    profileData: data
-})
+});
 
 export const fetchUserProfile = (userId) => (dispatch) => {
-   axios.get(`${_apibase}/1.0/profile/${userId || 12045}`)
+   profileApi.getUserProfile(userId)
    .then(resp => {
-      dispatch(setProfile(resp.data))
+      dispatch(setProfile(resp))
    })
    .catch((e) => {
       console.log(e);

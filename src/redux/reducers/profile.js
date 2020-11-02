@@ -1,3 +1,5 @@
+import {SET_PROFILE} from '../actions/types';
+
 const initialState = {
    userId: 1,
    aboutMe: 'Изучаю React',
@@ -15,7 +17,7 @@ const initialState = {
 
 const profile = (state = initialState, action) => {
    switch(action.type) {
-      case 'SET_PROFILE':
+      case SET_PROFILE:
          return {
             ...state,
             ...action.profileData
