@@ -18,7 +18,7 @@ export const TOGGLE_LIKE_POST = 'TOGGLE_LIKE_POST';
 //messanger
 export const SET_ACTIVE_DIALOG = 'SET_ACTIVE_DIALOG';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
-export const CHANGE_NEW_MESSAGE = 'SEND_MESSAGE';
+export const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
 
 //auth
 export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';

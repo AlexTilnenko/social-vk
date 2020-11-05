@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveDialog, sendMessage, changeeNewMessage } from "../../redux/actions/messanger";
+import { setActiveDialog, sendMessage, changeNewMessage } from "../../redux/actions/messanger";
 import classNames from "classnames";
 
 import avatar from "../../assets/img/avatar.jpg";
@@ -12,9 +12,7 @@ function Messages() {
    const dispatch = useDispatch();
 
    const onMessageChange = (e) => {
-      dispatch(changeeNewMessage(e.target.value));
-      console.log(newMessage);
-      
+      dispatch(changeNewMessage(e.target.value));
 	};
    const onSendMessage = (e) => {
       e.preventDefault();

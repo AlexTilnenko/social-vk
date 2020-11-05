@@ -9,7 +9,7 @@ export const sendMessage = () => ({
    type: SEND_MESSAGE
 });
 
-export const changeeNewMessage = (value) => ({
+export const changeNewMessage = (value) => ({
    type: CHANGE_NEW_MESSAGE,
    messageValue: value
 });
