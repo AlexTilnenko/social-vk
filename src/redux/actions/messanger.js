@@ -1,15 +1,15 @@
-import {SET_ACTIVE_DIALOG, SEND_MESSAGE, CHANGE_NEW_MESSAGE} from './types';
+import { SET_ACTIVE_DIALOG, SEND_MESSAGE, CHANGE_NEW_MESSAGE } from './types';
 
 export const setActiveDialog = (id) => ({
    type: SET_ACTIVE_DIALOG,
-   activeDialogId: id
+   activeDialogId: id,
 });
 
 export const sendMessage = () => ({
-   type: SEND_MESSAGE
+   type: SEND_MESSAGE,
 });
 
 export const changeNewMessage = (value) => ({
    type: CHANGE_NEW_MESSAGE,
-   messageValue: value
+   messageValue: value,
 });
