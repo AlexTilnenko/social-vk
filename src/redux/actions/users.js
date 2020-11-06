@@ -9,9 +9,9 @@ import {
    SET_FOLLOWING,
 } from './types';
 
-export const setUsers = (data) => ({
+export const setUsers = (usersData) => ({
    type: SET_USERS,
-   usersData: data,
+   payload: usersData,
 });
 
 export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
@@ -29,33 +29,32 @@ export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
 
 export const setCurrentPage = (page) => ({
    type: SET_CURRENT_PAGE,
-   page,
+   payload: page,
 });
 
 export const setLoadingProgress = (isFetching) => ({
    type: SET_LOADING,
-   isFetching,
+   payload: isFetching,
 });
 
-export const setFollowingProgress = (isFetching, id) => ({
+export const setFollowingProgress = (data) => ({
    type: SET_FOLLOWING,
-   isFetching,
-   id,
+   payload: data,
 });
 
 export const fetchFollow = (id) => (dispatch) => {
-   dispatch(setFollowingProgress(true, id));
+   dispatch(setFollowingProgress({isFetching: true, id}));
    usersApi.followUser(id).then((resp) => {
       if (resp.resultCode === 0) {
          dispatch(follow(id));
       }
-      dispatch(setFollowingProgress(false, id));
+      dispatch(setFollowingProgress({ isFetching: false, id }));
    });
 };
 
 export const follow = (id) => ({
    type: FOLLOW_USER,
-   id,
+   payload: id,
 });
 
 export const fetchUnfollow = (id) => (dispatch) => {
@@ -70,5 +69,5 @@ export const fetchUnfollow = (id) => (dispatch) => {
 
 export const unfollow = (id) => ({
    type: UNFOLLOW_USER,
-   id,
+   payload: id,
 });

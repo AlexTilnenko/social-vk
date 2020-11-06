@@ -1,13 +1,13 @@
-import React from "react";
-import Post from "../Post/Post";
+import React, {useState} from "react";
+import Post from "./Post/Post";
 import { useDispatch } from "react-redux";
-import { addPost, deletePost, likePost } from "../../redux/actions/posts";
+import { addPost, deletePost, likePost } from "../../../redux/actions/posts";
 import PropTypes from 'prop-types';
 
 function MyPosts({ posts, avatar }) {
 	const dispatch = useDispatch();
 
-	const [value, setValue] = React.useState("");
+	const [value, setValue] = useState("");
 	const updateValue = (e) => {
 		setValue(e.target.value);
 	};

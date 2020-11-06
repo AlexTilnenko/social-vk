@@ -21,39 +21,39 @@ const users = (state = initialState, action) => {
       case SET_USERS:
          return {
             ...state,
-            items: action.usersData.items,
-            totalUsersCount: action.usersData.totalCount,
+            items: action.payload.items,
+            totalUsersCount: action.payload.totalCount,
          };
       case SET_CURRENT_PAGE:
          return {
             ...state,
-            currentPage: action.page,
+            currentPage: action.payload,
          };
       case FOLLOW_USER:
          return {
             ...state,
             items: state.items.map((user) => {
-               return user.id === action.id ? { ...user, followed: true } : user;
+               return user.id === action.payload ? { ...user, followed: true } : user;
             }),
          };
       case UNFOLLOW_USER:
          return {
             ...state,
             items: state.items.map((user) => {
-               return user.id === action.id ? { ...user, followed: false } : user;
+               return user.id === action.payload ? { ...user, followed: false } : user;
             }),
          };
       case SET_LOADING:
          return {
             ...state,
-            isLoading: action.isFetching,
+            isLoading: action.payload,
          };
       case SET_FOLLOWING:
          return {
             ...state,
-            followingInProgress: action.isFetching
-               ? [...state.followingInProgress, action.id]
-               : state.followingInProgress.filter((id) => id !== action.id),
+            followingInProgress: action.payload.isFetching
+               ? [...state.followingInProgress, action.payload.id]
+               : state.followingInProgress.filter((id) => id !== action.payload.id),
          };
       default:
          return state;

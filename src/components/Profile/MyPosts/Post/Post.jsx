@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import sprite from "../../assets/img/sprite.svg";
+import sprite from '../../../../assets/img/sprite.svg';
 
 function Post({ post, avatar, onDeletePost, onLikePost }) {
 	const { id, text, img, likeCount, liked } = post;

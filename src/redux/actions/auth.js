@@ -3,7 +3,7 @@ import {SET_AUTH_USER_DATA} from './types';
 
 export const setAuthUserData = (userId, email, login, resultCode) => ({
    type: SET_AUTH_USER_DATA,
-   data: {userId, email, login, resultCode}
+   payload: { userId, email, login, resultCode },
 });
 
 export const fetchAuthUserData = () => (dispatch) => {

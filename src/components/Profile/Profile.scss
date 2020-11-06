@@ -29,6 +29,7 @@
 
    }
    &__info-item {
+      position: relative;
       padding: 8px;
       span {
          color: $grey;

@@ -44,7 +44,7 @@ const messanger = (state = initialState, action) => {
       case SET_ACTIVE_DIALOG:
          return {
             ...state,
-            activeDialogId: action.activeDialogId,
+            activeDialogId: action.payload,
          };
       case SEND_MESSAGE:
          const date = new Date();
@@ -66,7 +66,7 @@ const messanger = (state = initialState, action) => {
       case CHANGE_NEW_MESSAGE:
          return {
             ...state,
-            newMessage: action.messageValue,
+            newMessage: action.payload,
          };
       default:
          return state;

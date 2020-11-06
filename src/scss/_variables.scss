@@ -4,6 +4,8 @@ $grey: #888888;
 $main-bg: rgb(243, 243, 243);
 $white: #fff;
 $dark: rgb(37, 37, 37);
+$blue-hover: lighten($blue, 7%);
+$grey-hover: lighten($main-bg, 7%);
 
 $duration: 0.1s;
 $radius: 3px;

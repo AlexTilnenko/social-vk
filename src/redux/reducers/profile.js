@@ -1,30 +1,47 @@
-import {SET_PROFILE} from '../actions/types';
+import { SET_PROFILE, SET_USER_STATUS, SET_NEW_STATUS, SAVE_NEW_STATUS } from '../actions/types';
 
 const initialState = {
    userId: 1,
-   aboutMe: 'Изучаю React',
+   aboutMe: null,
    photos: {
       small: null,
-      large: 'https://sites.google.com/site/ridkisnitvarini16/_/rsrc/1523859094694/home/zubr/velika-panda/%D0%BF%D0%B0%D0%BD%D0%B4%D0%B0_1.jpg',
+      large: null,
    },
-   fullName: 'Александр Тильненко',
-   lookingForAJob: true,
-   lookingForAJobDescription: 'React, Redux, Hooks, axios, classnames, React thunk',
+   fullName: null,
+   lookingForAJob: null,
+   lookingForAJobDescription: null,
    contacts: {
-      github: 'https://github.com/AlexTilnenko',
+      github: null,
    },
-}
+   status: '',
+   newStatus: '',
+};
 
 const profile = (state = initialState, action) => {
-   switch(action.type) {
+   switch (action.type) {
       case SET_PROFILE:
          return {
             ...state,
-            ...action.profileData
+            ...action.payload,
+         };
+      case SET_USER_STATUS:
+         return {
+            ...state,
+            status: action.payload ? action.payload : '',
+         };
+      case SET_NEW_STATUS:
+         return {
+            ...state,
+            newStatus: action.payload.trim() && action.payload,
+         };
+      case SAVE_NEW_STATUS:
+         return {
+            ...state,
+            status: action.payload,
          };
       default:
          return state;
    }
-}
+};
 
 export default profile;

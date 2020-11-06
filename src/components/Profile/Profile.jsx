@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import MyPosts from '../../components/MyPosts/MyPosts';
+import MyPosts from '../../components/Profile/MyPosts/MyPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import { fetchUserProfile } from '../../redux/actions/profile';
@@ -7,6 +7,7 @@ import withAuthRedirect from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 import photoHolder from '../../assets/img/user.png';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 function Profile(props) {
    const dispatch = useDispatch();
@@ -22,6 +23,8 @@ function Profile(props) {
       lookingForAJobDescription,
       contacts,
       photos,
+      status,
+      newStatus,
    } = useSelector((state) => state.profile);
 
    const posts = useSelector((state) => state.posts.activePosts);
@@ -31,6 +34,9 @@ function Profile(props) {
             <div className="block profile__info">
                <ul className="profile__info-list">
                   <li className="profile__info-item profile__info--name">{fullName}</li>
+                  <li className="profile__info-item">
+                     <ProfileStatus status={status} newStatus={newStatus} />
+                  </li>
                   <li className="profile__info-item">
                      <span>Обо мне:</span>
                      {aboutMe || 'Изучаю React'}
