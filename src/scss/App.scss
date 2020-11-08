@@ -28,14 +28,14 @@ body {
    transition: all ease-in $duration;
    cursor: pointer;
 
-   &:hover {
-      background-color: $blue-hover;
-   }
-
    &--add-form {
       padding: 8px 12px;
       background-color: $blue;
       border-radius: 0 $radius $radius 0;
+
+      &:hover {
+         background-color: $blue-hover;
+      }
    }
 
    &--remove-post {
@@ -72,10 +72,6 @@ body {
          height: 15px;
          transition: all ease-in $duration;
       }
-
-      &:hover {
-         background-color: transparent;
-      }
    }
 
    &--follow,
@@ -92,6 +88,10 @@ body {
       border: 1px solid $blue;
       background-color: $blue;
       color: $white;
+
+      &:hover {
+         background-color: $blue-hover;
+      }
    }
 
    &--unfollow {
@@ -107,6 +107,9 @@ body {
       padding: 5px 10px;
       background-color: $blue;
 
+      &:hover {
+         background-color: $blue-hover;
+      }
    }
 }
 
