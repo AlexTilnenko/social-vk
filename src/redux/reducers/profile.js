@@ -27,7 +27,8 @@ const profile = (state = initialState, action) => {
       case SET_USER_STATUS:
          return {
             ...state,
-            status: action.payload ? action.payload : '',
+            status: action.payload || '',
+            newStatus: action.payload || '',
          };
       case SET_NEW_STATUS:
          return {
@@ -37,7 +38,7 @@ const profile = (state = initialState, action) => {
       case SAVE_NEW_STATUS:
          return {
             ...state,
-            status: action.payload,
+            status: action.payload.trim() && action.payload,
          };
       default:
          return state;

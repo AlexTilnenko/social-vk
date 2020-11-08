@@ -3,7 +3,7 @@ import MyPosts from '../../components/Profile/MyPosts/MyPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import { fetchUserProfile } from '../../redux/actions/profile';
-import withAuthRedirect from '../hoc/withAuthRedirect';
+// import withAuthRedirect from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 import photoHolder from '../../assets/img/user.png';
@@ -71,4 +71,7 @@ function Profile(props) {
    );
 }
 
-export default compose(withRouter, withAuthRedirect)(Profile);
+export default compose(
+   withRouter, 
+   // withAuthRedirect
+   )(Profile);
