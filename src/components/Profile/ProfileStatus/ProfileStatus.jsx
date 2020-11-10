@@ -11,13 +11,15 @@ function ProfileStatus({ status, newStatus }) {
       document.body.addEventListener('click', outsideClickHandle);
    }, []);
 
-   const activateEditStatus = () => {
-      setEditStatus(true);
-   };
-
    const saveStatus = (newStatus) => {
-      dispatch(putUserStatus(newStatus));
-      setEditStatus(false);
+      if (newStatus) {
+         if (newStatus !== status) {
+            dispatch(putUserStatus(newStatus));
+         }
+         setEditStatus(false);
+      } else {
+         alert('Введите текст статуса!');
+      }
    };
 
    const outsideClickHandle = (e) => {
@@ -33,8 +35,8 @@ function ProfileStatus({ status, newStatus }) {
    return (
       <div className="profile-status">
          {!editStatus ? (
-            <div className="profile-status__label" onClick={activateEditStatus}>
-               {status ? status : 'Нажмите что бы добавить статус'}
+            <div className="profile-status__label" onClick={() => setEditStatus(true)}>
+               {status || 'Нажмите что бы добавить статус'}
             </div>
          ) : (
             <div className="profile-status__edit" ref={statusRef}>
@@ -54,5 +56,7 @@ function ProfileStatus({ status, newStatus }) {
       </div>
    );
 }
+
+
 
 export default ProfileStatus;
