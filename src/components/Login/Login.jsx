@@ -8,7 +8,7 @@ import { login } from '../../redux/actions/auth';
 
 function Login() {
    const dispatch = useDispatch();
-   const submitHandle =(values) => {
+   const loginHandle =(values) => {
       dispatch(login(values));
    }
    return (
@@ -21,7 +21,7 @@ function Login() {
                rememberMe: false,
             }}
             validationSchema={SiginSchema}
-            onSubmit={(values) => submitHandle(values)}
+            onSubmit={(values) => loginHandle(values)}
          >
             {({ values, errors, touched }) => (
                <Form className="login-form">

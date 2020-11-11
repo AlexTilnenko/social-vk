@@ -29,3 +29,15 @@ export const login = (loginData) => (dispatch) => {
       })
       .catch((e) => console.log(e));
 };
+
+export const logout = () => (dispatch) => {
+   loginApi
+      .logout()
+      .then((resp) => {
+         console.log(resp);
+         if (resp.resultCode === 0) {
+         dispatch(fetchAuthUserData());
+         }
+      })
+      .catch((e) => console.log(e));
+};
