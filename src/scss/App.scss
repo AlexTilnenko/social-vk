@@ -32,10 +32,6 @@ body {
       padding: 8px 12px;
       background-color: $blue;
       border-radius: 0 $radius $radius 0;
-
-      &:hover {
-         background-color: $blue-hover;
-      }
    }
 
    &--remove-post {
@@ -88,10 +84,6 @@ body {
       border: 1px solid $blue;
       background-color: $blue;
       color: $white;
-
-      &:hover {
-         background-color: $blue-hover;
-      }
    }
 
    &--unfollow {
@@ -106,9 +98,18 @@ body {
    &--status-save {
       padding: 5px 10px;
       background-color: $blue;
+   }
 
+   &--status-save,
+   &--follow,
+   &--add-form {
       &:hover {
          background-color: $blue-hover;
+      }
+      
+      &:focus {
+         background-color: $blue-hover;
+         text-decoration: underline;
       }
    }
 }

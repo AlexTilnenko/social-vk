@@ -1,7 +1,7 @@
-import { SET_PROFILE, SET_USER_STATUS, SET_NEW_STATUS, SAVE_NEW_STATUS } from '../actions/types';
+import { SET_PROFILE, SET_USER_STATUS, SAVE_NEW_STATUS } from '../actions/types';
 
 const initialState = {
-   userId: 1,
+   userId: null,
    aboutMe: null,
    photos: {
       small: null,
@@ -14,7 +14,6 @@ const initialState = {
       github: null,
    },
    status: '',
-   newStatus: '',
 };
 
 const profile = (state = initialState, action) => {
@@ -30,11 +29,11 @@ const profile = (state = initialState, action) => {
             status: action.payload || '',
             newStatus: action.payload || '',
          };
-      case SET_NEW_STATUS:
-         return {
-            ...state,
-            newStatus: action.payload.trim() && action.payload,
-         };
+      // case SET_NEW_STATUS:
+      //    return {
+      //       ...state,
+      //       newStatus: action.payload.trim() && action.payload,
+      //    };
       case SAVE_NEW_STATUS:
          return {
             ...state,

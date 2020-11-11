@@ -9,7 +9,6 @@ export const SET_FOLLOWING = 'SET_FOLLOWING';
 //profile
 export const SET_PROFILE = 'SET_PROFILE';
 export const SET_USER_STATUS = 'SET_USER_STATUS';
-export const SET_NEW_STATUS = 'SET_NEW_STATUS';
 export const SAVE_NEW_STATUS = 'SAVE_NEW_STATUS';
 
 //posts

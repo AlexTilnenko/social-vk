@@ -24,10 +24,11 @@ function Profile(props) {
       contacts,
       photos,
       status,
-      newStatus,
    } = useSelector((state) => state.profile);
 
    const posts = useSelector((state) => state.posts.activePosts);
+   const myId = useSelector((state) => state.auth.userId);
+   const userId = useSelector((state) => state.profile.userId);
    return (
       <div className="profile">
          <div className="profile__header">
@@ -35,7 +36,7 @@ function Profile(props) {
                <ul className="profile__info-list">
                   <li className="profile__info-item profile__info--name">{fullName}</li>
                   <li className="profile__info-item">
-                     <ProfileStatus status={status} newStatus={newStatus} />
+                     <ProfileStatus status={status} userId={userId} myId={myId}/>
                   </li>
                   <li className="profile__info-item">
                      <span>Обо мне:</span>
