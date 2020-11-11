@@ -39,3 +39,11 @@ export const authApi = {
       return instance.get(`auth/me`).then((resp) => resp.data);
    },
 };
+
+export const loginApi = {
+   login({ login, password, rememberMe }) {
+      return instance
+         .post('auth/login', { email: login, password, rememberMe })
+         .then((resp) => resp.data);
+   },
+};

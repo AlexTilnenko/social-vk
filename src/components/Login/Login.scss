@@ -4,13 +4,23 @@
    width: 400px;
    height: 400px;
    display: flex;
-   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+}
+
+.login-title {
+   font-size: 1.4rem;
+   margin-bottom: 15px;
 }
 
 .login-form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 
    &__item {
       display: block;
+      margin: 0 auto;
    }
 
    &--input {
@@ -19,10 +29,11 @@
       border: 1px solid $blue;
       border-radius: $radius;
       transition: $duration all ease-in;
+
       &:focus {
          background-color: rgb(218, 231, 248);
-         
-      }  
+
+      }
    }
 
    &-checkbox:checked+label:after {
@@ -30,7 +41,7 @@
    }
 
    &-label {
-      display: block;
+      display: inline-block;
       margin: 10px 0;
       cursor: pointer;
       position: relative;
@@ -65,5 +76,17 @@
          transform: rotate(45deg);
          transition: $duration all ease-in;
       }
+   }
+
+   &__submit {
+      margin: 0 auto;
+   }
+}
+
+.error {
+   border: 1px solid red;
+
+   &-message {
+      color: red;
    }
 }

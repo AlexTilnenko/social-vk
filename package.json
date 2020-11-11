@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
+    "formik": "^2.2.4",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -17,7 +18,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,13 +29,13 @@
     "precommit": "lint-staged",
     "eslint": "node_modules/.bin/eslint src/"
   },
-   "lint-staged": {
-      "*.{js, jsx}": [
-         "node_modules/.bin/eslint --max-warnings=0",
-         "prettier --write",
-         "git add"
-      ]
-   },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "node_modules/.bin/eslint --max-warnings=0",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
