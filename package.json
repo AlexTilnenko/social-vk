@@ -15,8 +15,9 @@
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.0",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -27,13 +28,13 @@
     "precommit": "lint-staged",
     "eslint": "node_modules/.bin/eslint src/"
   },
-   "lint-staged": {
-      "*.{js, jsx}": [
-         "node_modules/.bin/eslint --max-warnings=0",
-         "prettier --write",
-         "git add"
-      ]
-   },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "node_modules/.bin/eslint --max-warnings=0",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
