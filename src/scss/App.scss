@@ -100,18 +100,26 @@ body {
       background-color: $blue;
    }
 
+   &--login {
+      display: block;
+      padding: 7px 15px;
+      background-color: $blue;
+   }
+
    &--status-save,
    &--follow,
-   &--add-form {
+   &--add-form,
+   &--login {
       &:hover {
          background-color: $blue-hover;
       }
-      
+
       &:focus {
          background-color: $blue-hover;
          text-decoration: underline;
       }
    }
+
 }
 
 .liked {
