@@ -10,5 +10,5 @@ export const SiginSchema = Yup.object().shape({
       // .matches(/^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/g, 'Пароль должен содержать цифры и латинские буквы верхнего и нижнего регистра!')
       .required('Введите пароль!'),
    rememberMe: Yup.bool(),
-   // captcha: Yup.string().required(),
+   captcha: Yup.string(),
 });

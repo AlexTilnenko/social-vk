@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { setActiveDialog, sendMessage, changeNewMessage } from '../../redux/actions/messanger';
 import classNames from 'classnames';
 import withAuthRedirect from '../hoc/withAuthRedirect';
@@ -7,11 +7,10 @@ import withAuthRedirect from '../hoc/withAuthRedirect';
 import avatar from '../../assets/img/avatar.jpg';
 import { compose } from 'redux';
 
-function Messages() {
+function Messages({ dispatch }) {
    const { dialogs, messages, activeDialogId, newMessage } = useSelector(
       (state) => state.messanger
    );
-   const dispatch = useDispatch();
 
    const onMessageChange = (e) => {
       dispatch(changeNewMessage(e.target.value));

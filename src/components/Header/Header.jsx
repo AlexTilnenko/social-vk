@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAuthUserData, logout } from '../../redux/actions/auth';
+import { logout } from '../../redux/actions/auth';
 
 import sprite from '../../assets/img/sprite.svg';
-import { useDispatch, useSelector } from 'react-redux';
 
-function Header() {
-   const dispatch = useDispatch();
-
-   useEffect(() => {
-      dispatch(fetchAuthUserData());
-   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+function Header({dispatch}) {
    const { login, isAuth } = useSelector((state) => state.auth);
 
    const logoutHandle = () => {
-      console.log('logout click');
       dispatch(logout());
    }
    return (

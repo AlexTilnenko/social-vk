@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import Loader from '../../components/Loader/Loader';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,7 @@ import withAuthRedirect from '../hoc/withAuthRedirect';
 import photoHolder from '../../assets/img/user.png';
 import { compose } from 'redux';
 
-function Users() {
-   const dispatch = useDispatch();
+function Users({dispatch}) {
    const {
       items,
       pageSize,

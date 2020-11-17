@@ -1,22 +1,18 @@
 import React, { useEffect } from 'react';
-import MyPosts from '../../components/Profile/MyPosts/MyPosts';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
-import { fetchUserProfile } from '../../redux/actions/profile';
-// import withAuthRedirect from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
-
-import photoHolder from '../../assets/img/user.png';
+import { fetchUserProfile } from '../../redux/actions/profile';
+import MyPosts from '../../components/Profile/MyPosts/MyPosts';
+import withAuthRedirect from '../hoc/withAuthRedirect';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 
-function Profile(props) {
-   const dispatch = useDispatch();
+import photoHolder from '../../assets/img/user.png';
 
-   useEffect(() => {
-      dispatch(fetchUserProfile(props.match.params.userId));
-   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+function Profile(props) {
 
    const {
+      userId,
       fullName,
       aboutMe,
       lookingForAJob,
@@ -28,7 +24,11 @@ function Profile(props) {
 
    const posts = useSelector((state) => state.posts.activePosts);
    const myId = useSelector((state) => state.auth.userId);
-   const userId = useSelector((state) => state.profile.userId);
+
+   useEffect(() => {
+      props.dispatch(fetchUserProfile(props.match.params.userId || myId));
+   }, [props.match.params.userId]); // eslint-disable-line react-hooks/exhaustive-deps
+
    return (
       <div className="profile">
          <div className="profile__header">
@@ -36,7 +36,7 @@ function Profile(props) {
                <ul className="profile__info-list">
                   <li className="profile__info-item profile__info--name">{fullName}</li>
                   <li className="profile__info-item">
-                     <ProfileStatus status={status} userId={userId} myId={myId}/>
+                     <ProfileStatus status={status} userId={userId} myId={myId} />
                   </li>
                   <li className="profile__info-item">
                      <span>Обо мне:</span>
@@ -74,5 +74,5 @@ function Profile(props) {
 
 export default compose(
    withRouter, 
-   // withAuthRedirect
+   withAuthRedirect
    )(Profile);

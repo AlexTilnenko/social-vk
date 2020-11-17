@@ -2,26 +2,34 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { SiginSchema } from '../validation';
 import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { login } from '../../redux/actions/auth';
 import { useState } from 'react';
+import { Redirect } from 'react-router';
 
-function Login() {
-   const dispatch = useDispatch();
+function Login({dispatch}) {
    const [errorMessage, setErrorMessage] = useState('');
 
-   const captchaUrl = useSelector((state) => state.auth.captchaUrl);
+   const {captchaUrl, isAuth} = useSelector((state) => state.auth);
 
    const loginHandle = (values) => {
       dispatch(
          login(
             values,
-            () => console.log('login success'),
-            (message) => setErrorMessage(message)
+            () => console.log(),
+            (message) => {
+               setErrorMessage(message);
+
+            }
          )
       );
    };
+
+   if(isAuth) {
+      return <Redirect to='/profile'/>
+   }
+   
    return (
       <div className="login-wrapper block">
          <h1 className="login-title">Войдите в свой аккаунт</h1>

@@ -22,14 +22,14 @@ export const usersApi = {
 
 export const profileApi = {
    getUserProfile(userId) {
-      return userInstance.get(`profile/${userId || 12045}`).then((resp) => resp.data);
+      return userInstance.get(`profile/${userId}`).then((resp) => resp.data);
    },
    getUserStatus(userId) {
-      return userInstance.get(`profile/status/${userId || 12045}`).then((resp) => resp.data);
+      return userInstance.get(`profile/status/${userId}`).then((resp) => resp.data);
    },
    putUserStatus(statusValue) {
       return userInstance
-         .put(`https://social-network.samuraijs.com/api/1.0/profile/status`, {
+         .put(`status`, {
             status: `${statusValue}`,
          })
          .then((resp) => resp);
@@ -41,7 +41,6 @@ export const authApi = {
       return userInstance.get(`auth/me`).then((resp) => resp.data);
    },
    login({ login, password, rememberMe = false, captcha = false }) {
-      console.log({ login, password, rememberMe, captcha });
       return userInstance
          .post('auth/login', { email: login, password, rememberMe, captcha })
          .then((resp) => resp.data);

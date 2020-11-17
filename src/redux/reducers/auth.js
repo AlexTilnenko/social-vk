@@ -14,7 +14,7 @@ const auth = (state = initialState, action) => {
          return {
             ...state,
             ...action.payload,
-            isAuth: action.payload.resultCode === 0 ? true : false,
+            isAuth: action.payload.isAuth,
          };
       case SET_AUTH_CAPTCHA_URL:
          return {

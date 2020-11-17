@@ -25,3 +25,6 @@ export const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
 //auth
 export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 export const SET_AUTH_CAPTCHA_URL = 'SET_AUTH_CAPTCHA_URL';
+
+//initialized
+export const SET_INITIALIZED = 'SET_INITIALIZED';
