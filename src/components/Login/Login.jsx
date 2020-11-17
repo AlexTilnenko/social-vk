@@ -2,15 +2,26 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { SiginSchema } from '../validation';
 import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from '../../redux/actions/auth';
+import { useState } from 'react';
 
 function Login() {
    const dispatch = useDispatch();
-   const loginHandle =(values) => {
-      dispatch(login(values));
-   }
+   const [errorMessage, setErrorMessage] = useState('');
+
+   const captchaUrl = useSelector((state) => state.auth.captchaUrl);
+
+   const loginHandle = (values) => {
+      dispatch(
+         login(
+            values,
+            () => console.log('login success'),
+            (message) => setErrorMessage(message)
+         )
+      );
+   };
    return (
       <div className="login-wrapper block">
          <h1 className="login-title">Войдите в свой аккаунт</h1>
@@ -19,19 +30,20 @@ function Login() {
                login: '',
                password: '',
                rememberMe: false,
+               captcha: '',
             }}
             validationSchema={SiginSchema}
             onSubmit={(values) => loginHandle(values)}
          >
             {({ values, errors, touched }) => (
                <Form className="login-form">
+                  {errorMessage && <div className="error-message">{errorMessage}</div>}
                   <Field
                      className={classNames('login-form__item', 'login-form--input', {
                         error: errors.login && touched.login,
                      })}
                      type="text"
                      placeholder="Логин"
-                     id="login"
                      name="login"
                      value={values.login}
                   />
@@ -44,7 +56,6 @@ function Login() {
                      })}
                      type="password"
                      placeholder="Пароль"
-                     id="password"
                      name="password"
                      value={values.password}
                   />
@@ -63,6 +74,19 @@ function Login() {
                         Запомнить меня
                      </label>
                   </div>
+                  {captchaUrl && (
+                     <div className="login-form__item login-form--captcha">
+                        <img src={captchaUrl} alt="" />
+                        <Field
+                           className={classNames('login-form--input', {
+                              error: errors.captcha && touched.captcha,
+                           })}
+                           type="text"
+                           placeholder="Введите текст с картинки"
+                           name="captcha"
+                        />
+                     </div>
+                  )}
                   <button
                      className="login-form__submit btn btn--login"
                      type="submit"

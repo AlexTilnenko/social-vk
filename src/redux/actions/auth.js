@@ -1,13 +1,13 @@
-import { authApi, loginApi } from '../../api/api';
-import { SET_AUTH_USER_DATA } from './types';
+import { authApi, securityApi } from '../../api/api';
+import { SET_AUTH_USER_DATA, SET_AUTH_CAPTCHA_URL } from './types';
 
 export const setAuthUserData = (userId, email, login, resultCode) => ({
    type: SET_AUTH_USER_DATA,
    payload: { userId, email, login, resultCode },
 });
 
-export const fetchAuthUserData = () => (dispatch) => {
-   authApi
+export const fetchAuthUserData = () => async (dispatch) => {
+   await authApi
       .getAuthUserData()
       .then((resp) => {
          const { id, email, login } = resp.data;
@@ -18,25 +18,47 @@ export const fetchAuthUserData = () => (dispatch) => {
       });
 };
 
-export const login = (loginData) => (dispatch) => {
-   loginApi
+export const setAuthCaptchaUrl = (authCaptchaUrl) => ({
+   type: SET_AUTH_CAPTCHA_URL,
+   payload: authCaptchaUrl,
+});
+
+export const fetchAuthCaptchaUrl = () => async (dispatch) => {
+   await securityApi.getCaptchaUrl().then((resp) => {
+
+      dispatch(setAuthCaptchaUrl(resp));
+   });
+};
+
+export const login = (loginData, onSuccess, onError) => async (dispatch) => {
+   await authApi
       .login(loginData)
       .then((resp) => {
          console.log(resp);
-         if (resp.resultCode === 0) {
-         dispatch(fetchAuthUserData());
+         switch (resp.resultCode) {
+            case 0:
+               dispatch(fetchAuthUserData());
+               onSuccess();
+               break;
+            case 1:
+               onError('Неверный логин или пароль!');
+               break;
+            case 10:
+               dispatch(fetchAuthCaptchaUrl());
+               break;
+            default:
+               onError('Что-то пошло не так...');
          }
       })
       .catch((e) => console.log(e));
 };
 
-export const logout = () => (dispatch) => {
-   loginApi
+export const logout = () => async (dispatch) => {
+   await authApi
       .logout()
       .then((resp) => {
-         console.log(resp);
          if (resp.resultCode === 0) {
-         dispatch(fetchAuthUserData());
+            dispatch(fetchAuthUserData());
          }
       })
       .catch((e) => console.log(e));

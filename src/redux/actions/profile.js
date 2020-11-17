@@ -6,8 +6,8 @@ export const setProfile = (profileData) => ({
    payload: profileData,
 });
 
-export const fetchUserProfile = (userId) => (dispatch) => {
-   profileApi
+export const fetchUserProfile = (userId) => async (dispatch) => {
+   await profileApi
       .getUserProfile(userId)
       .then((resp) => {
          dispatch(setProfile(resp));
@@ -15,7 +15,7 @@ export const fetchUserProfile = (userId) => (dispatch) => {
       .catch((e) => {
          console.log(e);
       });
-   profileApi.getUserStatus(userId).then((resp) => {
+   await profileApi.getUserStatus(userId).then((resp) => {
       dispatch(setUserStatus(resp));
    });
 };
@@ -30,8 +30,8 @@ export const saveNewStatus = (statusValue) => ({
    payload: statusValue,
 });
 
-export const updateUserStatus = (statusValue) => (dispatch) => {
-   profileApi
+export const updateUserStatus = (statusValue) => async (dispatch) => {
+   await profileApi
       .putUserStatus(statusValue)
       .then((resp) => {
          if (resp.data.resultCode === 0) {

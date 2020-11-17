@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instance = axios.create({
+const userInstance = axios.create({
    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
    withCredentials: true,
    headers: { 'API-KEY': '7000b236-bfb6-4f30-b175-37522e846b95' },
@@ -8,25 +8,27 @@ const instance = axios.create({
 
 export const usersApi = {
    getUsers(currentPage, pageSize) {
-      return instance.get(`users?page=${currentPage}&count=${pageSize}`).then((resp) => resp.data);
+      return userInstance
+         .get(`users?page=${currentPage}&count=${pageSize}`)
+         .then((resp) => resp.data);
    },
    followUser(userId) {
-      return instance.post(`follow/${userId}`).then((resp) => resp.data);
+      return userInstance.post(`follow/${userId}`).then((resp) => resp.data);
    },
    unfollowUser(userId) {
-      return instance.delete(`follow/${userId}`).then((resp) => resp.data);
+      return userInstance.delete(`follow/${userId}`).then((resp) => resp.data);
    },
 };
 
 export const profileApi = {
    getUserProfile(userId) {
-      return instance.get(`profile/${userId || 12045}`).then((resp) => resp.data);
+      return userInstance.get(`profile/${userId || 12045}`).then((resp) => resp.data);
    },
    getUserStatus(userId) {
-      return instance.get(`profile/status/${userId || 12045}`).then((resp) => resp.data);
+      return userInstance.get(`profile/status/${userId || 12045}`).then((resp) => resp.data);
    },
    putUserStatus(statusValue) {
-      return instance
+      return userInstance
          .put(`https://social-network.samuraijs.com/api/1.0/profile/status`, {
             status: `${statusValue}`,
          })
@@ -36,17 +38,22 @@ export const profileApi = {
 
 export const authApi = {
    getAuthUserData() {
-      return instance.get(`auth/me`).then((resp) => resp.data);
+      return userInstance.get(`auth/me`).then((resp) => resp.data);
    },
-};
-
-export const loginApi = {
-   login({ login, password, rememberMe }) {
-      return instance
-         .post('auth/login', { email: login, password, rememberMe })
+   login({ login, password, rememberMe = false, captcha = false }) {
+      console.log({ login, password, rememberMe, captcha });
+      return userInstance
+         .post('auth/login', { email: login, password, rememberMe, captcha })
          .then((resp) => resp.data);
    },
    logout() {
-      return instance.delete('auth/login').then((resp) => resp.data);
+      return userInstance.delete('auth/login').then((resp) => resp.data);
+   },
+
+};
+
+export const securityApi = {
+   getCaptchaUrl() {
+      return userInstance.get('security/get-captcha-url').then((resp) => resp.data.url);
    },
 };

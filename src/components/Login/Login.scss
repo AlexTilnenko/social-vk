@@ -36,6 +36,18 @@
       }
    }
 
+   &--captcha {
+      text-align: center;
+      .login-form--input {
+         padding: 5px 15px;
+      }
+      img {
+         margin: 0 auto;
+         display: block;
+         max-width: 80px;
+      }
+   }
+
    &-checkbox:checked+label:after {
       opacity: 1;
    }

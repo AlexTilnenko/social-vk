@@ -15,6 +15,7 @@ function Header() {
    const { login, isAuth } = useSelector((state) => state.auth);
 
    const logoutHandle = () => {
+      console.log('logout click');
       dispatch(logout());
    }
    return (

@@ -14,9 +14,9 @@ export const setUsers = (usersData) => ({
    payload: usersData,
 });
 
-export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
+export const fetchUsers = (currentPage, pageSize) => async (dispatch) => {
    dispatch(setLoadingProgress(true));
-   usersApi
+   await usersApi
       .getUsers(currentPage, pageSize)
       .then((resp) => {
          dispatch(setUsers(resp));
@@ -42,9 +42,9 @@ export const setFollowingProgress = (data) => ({
    payload: data,
 });
 
-export const fetchFollow = (id) => (dispatch) => {
+export const fetchFollow = (id) => async (dispatch) => {
    dispatch(setFollowingProgress({isFetching: true, id}));
-   usersApi.followUser(id).then((resp) => {
+   await usersApi.followUser(id).then((resp) => {
       if (resp.resultCode === 0) {
          dispatch(follow(id));
       }
@@ -57,9 +57,9 @@ export const follow = (id) => ({
    payload: id,
 });
 
-export const fetchUnfollow = (id) => (dispatch) => {
+export const fetchUnfollow = (id) => async (dispatch) => {
    dispatch(setFollowingProgress(true, id));
-   usersApi.unfollowUser(id).then((resp) => {
+   await usersApi.unfollowUser(id).then((resp) => {
       if (resp.resultCode === 0) {
          dispatch(unfollow(id));
       }
