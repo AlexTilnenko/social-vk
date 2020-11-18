@@ -1,13 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { setActiveDialog, sendMessage, changeNewMessage } from '../../redux/actions/messanger';
+import { compose } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
+import { setActiveDialog, sendMessage, changeNewMessage } from '../../actions/messanger';
 import withAuthRedirect from '../hoc/withAuthRedirect';
 
 import avatar from '../../assets/img/avatar.jpg';
-import { compose } from 'redux';
 
-function Messages({ dispatch }) {
+function Messages() {
+   const dispatch = useDispatch();
    const { dialogs, messages, activeDialogId, newMessage } = useSelector(
       (state) => state.messanger
    );

@@ -1,16 +1,17 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { compose } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Loader from '../../components/Loader/Loader';
-import { Link } from 'react-router-dom';
-import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../redux/actions/users';
+import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
 import withAuthRedirect from '../hoc/withAuthRedirect';
 
 import photoHolder from '../../assets/img/user.png';
-import { compose } from 'redux';
 
-function Users({dispatch}) {
+function Users() {
+   const dispatch = useDispatch();
    const {
       items,
       pageSize,

@@ -8,7 +8,7 @@ import Profile from './components/Profile/Profile';
 import Messages from './components/Messages/Messages';
 import Users from './components/Users/Users';
 import Login from './components/Login/Login';
-import { initialize } from './redux/actions/initialisation';
+import { initialize } from './actions/initialisation';
 import Loader from './components/Loader/Loader';
 
 function App() {
@@ -31,21 +31,21 @@ function App() {
    return (
       <div className="App">
          <div className="main-wrapper">
-            <Header dispatch={dispatch} />
+            <Header />
 
             <div className="container main-container">
                <Navbar />
                <Route path="/profile/:userId?">
-                  <Profile dispatch={dispatch} />
+                  <Profile />
                </Route>
                <Route path="/messanger" exact>
-                  <Messages dispatch={dispatch} />
+                  <Messages />
                </Route>
                <Route path="/users" exact>
-                  <Users dispatch={dispatch} />
+                  <Users />
                </Route>
                <Route path="/login" exact>
-                  <Login dispatch={dispatch} />
+                  <Login />
                </Route>
             </div>
          </div>

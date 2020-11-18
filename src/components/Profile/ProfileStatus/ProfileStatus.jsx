@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUserStatus } from '../../../redux/actions/profile';
+import PropTypes from 'prop-types';
+import { updateUserStatus } from '../../../actions/profile';
 
 function ProfileStatus({ status, userId, myId }) {
    const dispatch = useDispatch();
@@ -68,12 +68,16 @@ function ProfileStatus({ status, userId, myId }) {
                </div>
             )
          ) : (
-            <div className="profile-status__label">
-               {status}
-            </div>
+            <div className="profile-status__label">{status}</div>
          )}
       </div>
    );
 }
+
+ProfileStatus.propTypes = {
+   status: PropTypes.string,
+   userId: PropTypes.number,
+   myId: PropTypes.number.isRequired,
+};
 
 export default ProfileStatus;

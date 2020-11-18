@@ -1,4 +1,4 @@
-import { profileApi } from '../../api/api';
+import { profileApi } from '../api/api';
 import { SET_PROFILE, SET_USER_STATUS, SAVE_NEW_STATUS } from './types';
 
 export const setProfile = (profileData) => ({

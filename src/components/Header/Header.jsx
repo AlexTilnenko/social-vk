@@ -1,16 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout } from '../../redux/actions/auth';
+import { logout } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
 
 import sprite from '../../assets/img/sprite.svg';
 
-function Header({dispatch}) {
+function Header() {
+   const dispatch = useDispatch();
    const { login, isAuth } = useSelector((state) => state.auth);
 
    const logoutHandle = () => {
       dispatch(logout());
-   }
+   };
    return (
       <header className="header">
          <div className="container header-container">
@@ -22,7 +24,9 @@ function Header({dispatch}) {
             {isAuth && (
                <div className="header__auth">
                   <span>{login}</span>
-                  <button className='btn btn--logout' type='button' onClick={logoutHandle}>Выйти</button>
+                  <button className="btn btn--logout" type="button" onClick={logoutHandle}>
+                     Выйти
+                  </button>
                </div>
             )}
          </div>

@@ -29,7 +29,7 @@ export const profileApi = {
    },
    putUserStatus(statusValue) {
       return userInstance
-         .put(`status`, {
+         .put(`profile/status`, {
             status: `${statusValue}`,
          })
          .then((resp) => resp);

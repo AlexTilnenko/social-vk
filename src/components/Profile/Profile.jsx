@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import { fetchUserProfile } from '../../redux/actions/profile';
-import MyPosts from '../../components/Profile/MyPosts/MyPosts';
-import withAuthRedirect from '../hoc/withAuthRedirect';
+import { fetchUserProfile } from '../../actions/profile';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import MyPosts from './MyPosts/MyPosts';
+import withAuthRedirect from '../hoc/withAuthRedirect';
 
 import photoHolder from '../../assets/img/user.png';
 
 function Profile(props) {
-
+   const dispatch = useDispatch();
    const {
       userId,
       fullName,
@@ -26,9 +26,9 @@ function Profile(props) {
    const myId = useSelector((state) => state.auth.userId);
 
    useEffect(() => {
-      props.dispatch(fetchUserProfile(props.match.params.userId || myId));
+      dispatch(fetchUserProfile(props.match.params.userId || myId));
    }, [props.match.params.userId]); // eslint-disable-line react-hooks/exhaustive-deps
-
+   console.log('render profile');
    return (
       <div className="profile">
          <div className="profile__header">
@@ -72,7 +72,4 @@ function Profile(props) {
    );
 }
 
-export default compose(
-   withRouter, 
-   withAuthRedirect
-   )(Profile);
+export default compose(withRouter, withAuthRedirect)(Profile);

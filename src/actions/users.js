@@ -1,4 +1,4 @@
-import { usersApi } from '../../api/api';
+import { usersApi } from '../api/api';
 
 import {
    SET_USERS,

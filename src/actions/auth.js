@@ -1,4 +1,4 @@
-import { authApi, securityApi } from '../../api/api';
+import { authApi, securityApi } from '../api/api';
 import { SET_AUTH_USER_DATA, SET_AUTH_CAPTCHA_URL } from './types';
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({
