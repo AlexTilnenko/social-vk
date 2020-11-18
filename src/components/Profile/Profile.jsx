@@ -6,9 +6,10 @@ import { fetchUserProfile } from '../../actions/profile';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import MyPosts from './MyPosts/MyPosts';
 import withAuthRedirect from '../hoc/withAuthRedirect';
+import { selectProfileData, selectActivePosts } from '../../selectors/profileSelectors';
+import { selectAuthUserId } from '../../selectors/authSelectors';
 
 import photoHolder from '../../assets/img/user.png';
-
 function Profile(props) {
    const dispatch = useDispatch();
    const {
@@ -20,15 +21,15 @@ function Profile(props) {
       contacts,
       photos,
       status,
-   } = useSelector((state) => state.profile);
+   } = useSelector(selectProfileData);
 
-   const posts = useSelector((state) => state.posts.activePosts);
-   const myId = useSelector((state) => state.auth.userId);
+   const posts = useSelector(selectActivePosts);
+   const myId = useSelector(selectAuthUserId);
 
    useEffect(() => {
       dispatch(fetchUserProfile(props.match.params.userId || myId));
    }, [props.match.params.userId]); // eslint-disable-line react-hooks/exhaustive-deps
-   console.log('render profile');
+
    return (
       <div className="profile">
          <div className="profile__header">
@@ -42,21 +43,14 @@ function Profile(props) {
                      <span>Обо мне:</span>
                      {aboutMe || 'Изучаю React'}
                   </li>
-                  <li className="profile__info-item">
-                     {lookingForAJob ? 'В поисках работы' : 'Работаю в Google'}
-                  </li>
+                  <li className="profile__info-item">{lookingForAJob ? 'В поисках работы' : 'Работаю в Google'}</li>
                   <li className="profile__info-item">
                      <span>Stack:</span>
-                     {lookingForAJobDescription ||
-                        'React, Redux, Hooks, axios, classnames, React thunk'}
+                     {lookingForAJobDescription || 'React, Redux, Hooks, axios, classnames, React thunk'}
                   </li>
                   <li className="profile__info-item">
                      <span>Контакты:</span>
-                     <a
-                        href={contacts.github && `${contacts.github}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                     >
+                     <a href={contacts.github && `${contacts.github}`} rel="noopener noreferrer" target="_blank">
                         {contacts.github || 'не сижу в соц.сетях'}
                      </a>
                   </li>

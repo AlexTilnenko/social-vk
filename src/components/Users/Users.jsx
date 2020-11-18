@@ -9,27 +9,17 @@ import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../ac
 import withAuthRedirect from '../hoc/withAuthRedirect';
 
 import photoHolder from '../../assets/img/user.png';
+import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
 
 function Users() {
    const dispatch = useDispatch();
-   const {
-      items,
-      pageSize,
-      totalUsersCount,
-      currentPage,
-      isLoading,
-      followingInProgress,
-   } = useSelector((state) => state.users);
+   const { items, pageSize, currentPage, isLoading, followingInProgress } = useSelector(selectUsersData);
+
+   const pagesCount = useSelector(selectUserPagesCount);
 
    useEffect(() => {
       dispatch(fetchUsers(currentPage, pageSize));
    }, [currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
-
-   let pagesCount = Math.ceil(totalUsersCount / pageSize);
-   const pages = [];
-   for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-   }
 
    const onPageChange = (page) => {
       dispatch(setCurrentPage(page));
@@ -47,17 +37,22 @@ function Users() {
       <div className="users">
          {isLoading && <Loader />}
          <ul className="users__pages-list">
-            {pages.map((page) => (
-               <li
-                  key={page}
-                  className={classNames('users__page', 'block', {
-                     active: currentPage === page,
-                  })}
-                  onClick={() => onPageChange(page)}
-               >
-                  {page}
-               </li>
-            ))}
+            {Array(pagesCount)
+               .fill(0)
+               .map((item, index) => {
+                  const page = index + 1;
+                  return (
+                     <li
+                        key={page}
+                        className={classNames('users__page', 'block', {
+                           active: currentPage === page,
+                        })}
+                        onClick={() => onPageChange(page)}
+                     >
+                        {page}
+                     </li>
+                  );
+               })}
          </ul>
          <ul className="users__list">
             {items.map(({ id, name, followed, photos }) => {

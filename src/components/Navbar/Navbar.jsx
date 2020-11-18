@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import sprite from '../../assets/img/sprite.svg';
 
 function Navbar() {
+   // console.log('render navbar');
+
    return (
       <nav className="navbar">
          <ul className="navbar__list">
