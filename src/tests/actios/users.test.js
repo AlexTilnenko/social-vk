@@ -1,12 +1,14 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import * as axios from 'axios';
 import * as a from '../../actions/users';
 import * as t from '../../actions/types';
-import fetchMock from 'fetch-mock';
+import { userInstance } from '../../api/api';
 
+jest.mock('axios');
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-const store = mockStore();
+const store = mockStore({});
 
 describe('Users actions', () => {
    describe('Sync actions', () => {
@@ -32,7 +34,7 @@ describe('Users actions', () => {
             payload: usersData,
             type: t.SET_USERS,
          };
-         expect(a.setUsers(usersData)).toEqual(expectedAction);
+         expect(a.setUsers(expectedAction.payload)).toEqual(expectedAction);
       });
 
       it('setCurrentPage', () => {
@@ -40,7 +42,7 @@ describe('Users actions', () => {
             payload: 10,
             type: t.SET_CURRENT_PAGE,
          };
-         expect(a.setCurrentPage(10)).toEqual(expectedAction);
+         expect(a.setCurrentPage(expectedAction.payload)).toEqual(expectedAction);
       });
 
       it('setLoadingProgress', () => {
@@ -55,7 +57,7 @@ describe('Users actions', () => {
             type: t.SET_FOLLOWING,
             payload: { isFetching: true, id: 12045 },
          };
-         expect(a.setFollowingProgress({ isFetching: true, id: 12045 })).toEqual(expectedAction);
+         expect(a.setFollowingProgress(expectedAction.payload)).toEqual(expectedAction);
       });
 
       it('toggleFollow', () => {
@@ -63,18 +65,17 @@ describe('Users actions', () => {
             type: t.TOGGLE_FOLLOW_USER,
             payload: 12045,
          };
-         expect(a.toggleFollow(12045)).toEqual(expectedAction);
+         expect(a.toggleFollow(expectedAction.payload)).toEqual(expectedAction);
       });
    });
 
-   describe('Async actions', () => {
-      beforeEach(() => {
-         store.clearActions();
-      });
-      afterEach(() => {
-         fetchMock.restore();
-      });
+   // describe('Async actions', () => {
+   //    beforeEach(() => {
+   //       store.clearActions();
+   //       axiosMock.reset();
+   //    });
+   //    it('return users when fetchUsers is called', () => {
 
-      it('some', () => {});
-   });
+   //    });
+   // });
 });

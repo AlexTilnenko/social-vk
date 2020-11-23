@@ -26,9 +26,9 @@ export const toggleFollow = (id) => ({
    payload: id,
 });
 
-export const fetchUsers = (currentPage, pageSize) => async (dispatch) => {
+export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
    dispatch(setLoadingProgress());
-   await usersApi
+   usersApi
       .getUsers(currentPage, pageSize)
       .then((resp) => {
          dispatch(setUsers(resp));
@@ -38,9 +38,9 @@ export const fetchUsers = (currentPage, pageSize) => async (dispatch) => {
       });
 };
 
-export const fetchToggleFollow = (id) => async (dispatch) => {
+export const fetchToggleFollow = (id) => (dispatch) => {
    dispatch(setFollowingProgress({ isFetching: true, id }));
-   await usersApi.toggleFollowUser(id).then((resp) => {
+   usersApi.toggleFollowUser(id).then((resp) => {
       if (resp.resultCode === 0) {
          dispatch(toggleFollow(id));
       }
