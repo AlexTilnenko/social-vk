@@ -1,6 +1,6 @@
-import { SET_PROFILE, SET_USER_STATUS, SAVE_NEW_STATUS } from '../actions/types';
+import { SET_PROFILE, SET_USER_STATUS } from '../actions/types';
 
-const initialState = {
+export const initialState = {
    userId: null,
    aboutMe: null,
    photos: {
@@ -23,22 +23,13 @@ const profile = (state = initialState, action) => {
             ...state,
             ...action.payload,
          };
-      case SET_USER_STATUS:
+      case SET_USER_STATUS: {
+         const newStatusText = action.payload ? action.payload.trim() : '';
          return {
             ...state,
-            status: action.payload || '',
-            newStatus: action.payload || '',
+            status: newStatusText,
          };
-      // case SET_NEW_STATUS:
-      //    return {
-      //       ...state,
-      //       newStatus: action.payload.trim() && action.payload,
-      //    };
-      case SAVE_NEW_STATUS:
-         return {
-            ...state,
-            status: action.payload.trim() && action.payload,
-         };
+      }
       default:
          return state;
    }

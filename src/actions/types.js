@@ -2,14 +2,12 @@
 export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_LOADING = 'SET_LOADING';
-export const FOLLOW_USER = 'FOLLOW_USER';
-export const UNFOLLOW_USER = 'UNFOLLOW_USER';
+export const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
 export const SET_FOLLOWING = 'SET_FOLLOWING';
 
 //profile
 export const SET_PROFILE = 'SET_PROFILE';
 export const SET_USER_STATUS = 'SET_USER_STATUS';
-export const SAVE_NEW_STATUS = 'SAVE_NEW_STATUS';
 
 //posts
 export const SET_POSTS = 'SET_POSTS';

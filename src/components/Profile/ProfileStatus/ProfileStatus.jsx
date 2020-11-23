@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateUserStatus } from '../../../actions/profile';
 
-function ProfileStatus({ status, userId, myId }) {
+const ProfileStatus = React.memo(function ProfileStatus({ status, userId, myId }) {
    const dispatch = useDispatch();
    const statusRef = useRef();
 
@@ -11,15 +11,15 @@ function ProfileStatus({ status, userId, myId }) {
    const [newStatus, setNewStatus] = useState(status);
 
    useEffect(() => {
-      document.body.addEventListener('click', outsideClickHandle);
+      document.body.addEventListener('mousedown', outsideClickHandle);
       return () => {
-         document.body.removeEventListener('click', outsideClickHandle);
+         document.body.removeEventListener('mousedown', outsideClickHandle);
       };
    }, []);
 
    useEffect(() => {
       if (status !== newStatus) {
-         setNewStatus(status);
+         setNewStatus(status.trim());
       }
    }, [status]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -72,7 +72,7 @@ function ProfileStatus({ status, userId, myId }) {
          )}
       </div>
    );
-}
+});
 
 ProfileStatus.propTypes = {
    status: PropTypes.string,

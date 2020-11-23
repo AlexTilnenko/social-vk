@@ -1,13 +1,6 @@
-import {
-   SET_USERS,
-   SET_CURRENT_PAGE,
-   SET_LOADING,
-   FOLLOW_USER,
-   UNFOLLOW_USER,
-   SET_FOLLOWING,
-} from '../actions/types';
+import { SET_USERS, SET_CURRENT_PAGE, SET_LOADING, TOGGLE_FOLLOW_USER, SET_FOLLOWING } from '../actions/types';
 
-const initialState = {
+export const initialState = {
    items: [],
    pageSize: 24,
    totalUsersCount: 0,
@@ -19,41 +12,39 @@ const initialState = {
 const users = (state = initialState, action) => {
    switch (action.type) {
       case SET_USERS:
-         return {
-            ...state,
-            items: action.payload.items,
-            totalUsersCount: action.payload.totalCount,
-         };
+         if (action.payload) {
+            return {
+               ...state,
+               items: action.payload.items,
+               totalUsersCount: action.payload.totalCount,
+               isLoading: false,
+            };
+         }
+         return state;
       case SET_CURRENT_PAGE:
          return {
             ...state,
-            currentPage: action.payload,
+            currentPage: action.payload || state.currentPage,
+            isLoading: false,
          };
-      case FOLLOW_USER:
+      case TOGGLE_FOLLOW_USER:
          return {
             ...state,
             items: state.items.map((user) => {
-               return user.id === action.payload ? { ...user, followed: true } : user;
+               return user.id === action.payload ? { ...user, followed: !user.followed } : user;
             }),
+            followingInProgress: state.followingInProgress.filter((id) => id !== action.payload),
          };
-      case UNFOLLOW_USER:
-         return {
-            ...state,
-            items: state.items.map((user) => {
-               return user.id === action.payload ? { ...user, followed: false } : user;
-            }),
-         };
+
       case SET_LOADING:
          return {
             ...state,
-            isLoading: action.payload,
+            isLoading: true,
          };
       case SET_FOLLOWING:
          return {
             ...state,
-            followingInProgress: action.payload.isFetching
-               ? [...state.followingInProgress, action.payload.id]
-               : state.followingInProgress.filter((id) => id !== action.payload.id),
+            followingInProgress: action.payload.isFetching && [...state.followingInProgress, action.payload.id],
          };
       default:
          return state;

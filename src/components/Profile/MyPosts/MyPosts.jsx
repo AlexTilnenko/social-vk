@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addPost, deletePost, likePost } from '../../../actions/posts';
 import PropTypes from 'prop-types';
 
-function MyPosts({ posts, avatar }) {
+const MyPosts = React.memo(function MyPosts({ posts, avatar }) {
    const dispatch = useDispatch();
 
    const [value, setValue] = useState('');
@@ -47,18 +47,12 @@ function MyPosts({ posts, avatar }) {
          </form>
          {posts.map((post) => {
             return (
-               <Post
-                  post={post}
-                  avatar={avatar}
-                  key={post.id}
-                  onDeletePost={onDeletePost}
-                  onLikePost={onLikePost}
-               />
+               <Post post={post} avatar={avatar} key={post.id} onDeletePost={onDeletePost} onLikePost={onLikePost} />
             );
          })}
       </div>
    );
-}
+});
 
 MyPosts.propTypes = {
    posts: PropTypes.array.isRequired,

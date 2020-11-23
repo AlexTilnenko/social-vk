@@ -1,17 +1,17 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import Loader from '../../components/Loader/Loader';
-import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
 import withAuthRedirect from '../hoc/withAuthRedirect';
-
-import photoHolder from '../../assets/img/user.png';
+import Loader from '../../components/Loader/Loader';
+import { fetchUsers, setCurrentPage, fetchToggleFollow } from '../../actions/users';
 import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
 
+import photoHolder from '../../assets/img/user.png';
+
 function Users() {
+   console.log('users render');
    const dispatch = useDispatch();
    const { items, pageSize, currentPage, isLoading, followingInProgress } = useSelector(selectUsersData);
 
@@ -25,12 +25,8 @@ function Users() {
       dispatch(setCurrentPage(page));
    };
 
-   const onClickFollow = (id) => {
-      dispatch(fetchFollow(id));
-   };
-
-   const onClickUnfollow = (id) => {
-      dispatch(fetchUnfollow(id));
+   const onClickToggleFollow = (id) => {
+      dispatch(fetchToggleFollow(id));
    };
 
    return (
@@ -64,23 +60,13 @@ function Users() {
                         </span>
                         <span className="users__item-name">{name}</span>
                      </Link>
-                     {followed ? (
-                        <button
-                           className="btn btn--unfollow"
-                           onClick={() => onClickUnfollow(id)}
-                           disabled={followingInProgress.some((item) => item === id)}
-                        >
-                           Unfollow
-                        </button>
-                     ) : (
-                        <button
-                           className="btn btn--follow"
-                           onClick={() => onClickFollow(id)}
-                           disabled={followingInProgress.some((item) => item === id)}
-                        >
-                           Follow
-                        </button>
-                     )}
+                     <button
+                        className={classNames('btn', { 'btn--unfollow': followed, 'btn--follow': !followed })}
+                        onClick={() => onClickToggleFollow(id)}
+                        disabled={followingInProgress.some((item) => item === id)}
+                     >
+                        {followed ? 'Подписаться' : 'Вы подписаны'}
+                     </button>
                   </li>
                );
             })}

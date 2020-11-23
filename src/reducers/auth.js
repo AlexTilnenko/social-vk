@@ -1,6 +1,6 @@
 import { SET_AUTH_USER_DATA, SET_AUTH_CAPTCHA_URL } from '../actions/types';
 
-const initialState = {
+export const initialState = {
    userId: null,
    email: null,
    login: null,
@@ -14,12 +14,12 @@ const auth = (state = initialState, action) => {
          return {
             ...state,
             ...action.payload,
-            isAuth: action.payload.isAuth,
+            captchaUrl: '',
          };
       case SET_AUTH_CAPTCHA_URL:
          return {
             ...state,
-            captchaUrl: action.payload,
+            captchaUrl: action.payload ? action.payload : '',
          };
       default:
          return state;

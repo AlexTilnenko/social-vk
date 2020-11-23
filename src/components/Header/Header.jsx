@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import sprite from '../../assets/img/sprite.svg';
 
-function Header() {
+const Header = React.memo(function Header() {
    const dispatch = useDispatch();
    const { login, isAuth } = useSelector((state) => state.auth);
 
@@ -32,6 +32,6 @@ function Header() {
          </div>
       </header>
    );
-}
+});
 
 export default Header;

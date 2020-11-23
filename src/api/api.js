@@ -8,15 +8,10 @@ const userInstance = axios.create({
 
 export const usersApi = {
    getUsers(currentPage, pageSize) {
-      return userInstance
-         .get(`users?page=${currentPage}&count=${pageSize}`)
-         .then((resp) => resp.data);
+      return userInstance.get(`users?page=${currentPage}&count=${pageSize}`).then((resp) => resp);
    },
-   followUser(userId) {
+   toggleFollowUser(userId) {
       return userInstance.post(`follow/${userId}`).then((resp) => resp.data);
-   },
-   unfollowUser(userId) {
-      return userInstance.delete(`follow/${userId}`).then((resp) => resp.data);
    },
 };
 
@@ -41,14 +36,11 @@ export const authApi = {
       return userInstance.get(`auth/me`).then((resp) => resp.data);
    },
    login({ login, password, rememberMe = false, captcha = false }) {
-      return userInstance
-         .post('auth/login', { email: login, password, rememberMe, captcha })
-         .then((resp) => resp.data);
+      return userInstance.post('auth/login', { email: login, password, rememberMe, captcha }).then((resp) => resp.data);
    },
    logout() {
       return userInstance.delete('auth/login').then((resp) => resp.data);
    },
-
 };
 
 export const securityApi = {
