@@ -3,32 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import classNames from 'classnames';
 import { Formik, Field, Form } from 'formik';
-import { SiginSchema } from '../../validation';
-
 import { login } from '../../actions/auth';
+import { SiginSchema } from '../../utils/validation';
+import { selectAuthData } from '../../selectors/authSelectors';
 
 function Login() {
    const dispatch = useDispatch();
    const [errorMessage, setErrorMessage] = useState('');
 
-   const { captchaUrl, isAuth } = useSelector((state) => state.auth);
+   const { captchaUrl, isAuth } = useSelector(selectAuthData);
 
    const loginHandle = (values) => {
       dispatch(
-         login(
-            values,
-            () => console.log(),
-            (message) => {
-               setErrorMessage(message);
-            }
-         )
+         login(values, (message) => {
+            setErrorMessage(message);
+         })
       );
    };
 
    if (isAuth) {
       return <Redirect to="/profile" />;
    }
-
    return (
       <div className="login-wrapper block">
          <h1 className="login-title">Войдите в свой аккаунт</h1>
@@ -42,7 +37,7 @@ function Login() {
             validationSchema={SiginSchema}
             onSubmit={(values) => loginHandle(values)}
          >
-            {({ values, errors, touched }) => (
+            {({ values, setFieldValue, errors, touched }) => (
                <Form className="login-form">
                   {errorMessage && <div className="error-message">{errorMessage}</div>}
                   <Field
@@ -54,9 +49,7 @@ function Login() {
                      name="login"
                      value={values.login}
                   />
-                  {errors.login && touched.login ? (
-                     <div className="error-message">{errors.login}</div>
-                  ) : null}
+                  {errors.login && touched.login ? <div className="error-message">{errors.login}</div> : null}
                   <Field
                      className={classNames('login-form__item', 'login-form--input', {
                         error: errors.password && touched.password,
@@ -66,17 +59,10 @@ function Login() {
                      name="password"
                      value={values.password}
                   />
-                  {errors.password && touched.password ? (
-                     <div className="error-message">{errors.password}</div>
-                  ) : null}
+                  {errors.password && touched.password ? <div className="error-message">{errors.password}</div> : null}
 
                   <div className="login-form__item">
-                     <Field
-                        className="login-form-checkbox"
-                        type="checkbox"
-                        id="rememberMe"
-                        name="rememberMe"
-                     />
+                     <Field className="login-form-checkbox" type="checkbox" id="rememberMe" name="rememberMe" />
                      <label className="login-form-label" htmlFor="rememberMe">
                         Запомнить меня
                      </label>

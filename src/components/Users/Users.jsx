@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 import withAuthRedirect from '../hoc/withAuthRedirect';
 import Loader from '../../components/Loader/Loader';
-import { fetchUsers, setCurrentPage, fetchToggleFollow } from '../../actions/users';
+import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
 import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
-
-import photoHolder from '../../assets/img/user.png';
+import Pagination from './Pagination';
+import User from './User';
 
 function Users() {
-   console.log('users render');
    const dispatch = useDispatch();
    const { items, pageSize, currentPage, isLoading, followingInProgress } = useSelector(selectUsersData);
-
    const pagesCount = useSelector(selectUserPagesCount);
-
    useEffect(() => {
       dispatch(fetchUsers(currentPage, pageSize));
    }, [currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -25,49 +20,29 @@ function Users() {
       dispatch(setCurrentPage(page));
    };
 
-   const onClickToggleFollow = (id) => {
-      dispatch(fetchToggleFollow(id));
+   const onClickFollow = (id) => {
+      dispatch(fetchFollow(id));
+   };
+   const onClickUnfollow = (id) => {
+      dispatch(fetchUnfollow(id));
    };
 
    return (
       <div className="users">
          {isLoading && <Loader />}
-         <ul className="users__pages-list">
-            {Array(pagesCount)
-               .fill(0)
-               .map((item, index) => {
-                  const page = index + 1;
-                  return (
-                     <li
-                        key={page}
-                        className={classNames('users__page', 'block', {
-                           active: currentPage === page,
-                        })}
-                        onClick={() => onPageChange(page)}
-                     >
-                        {page}
-                     </li>
-                  );
-               })}
-         </ul>
+         <Pagination pagesCount={pagesCount} currentPage={currentPage} onPageChange={onPageChange} />
          <ul className="users__list">
             {items.map(({ id, name, followed, photos }) => {
                return (
-                  <li className="users__item block" key={id}>
-                     <Link to={`/profile/${id}`}>
-                        <span className="users__item-photo avatar">
-                           <img src={photos.large || photoHolder} alt={name} />
-                        </span>
-                        <span className="users__item-name">{name}</span>
-                     </Link>
-                     <button
-                        className={classNames('btn', { 'btn--unfollow': followed, 'btn--follow': !followed })}
-                        onClick={() => onClickToggleFollow(id)}
-                        disabled={followingInProgress.some((item) => item === id)}
-                     >
-                        {followed ? 'Подписаться' : 'Вы подписаны'}
-                     </button>
-                  </li>
+                  <User
+                     id={id}
+                     name={name}
+                     photos={photos}
+                     followed={followed}
+                     followingInProgress={followingInProgress}
+                     onClickUnfollow={onClickUnfollow}
+                     onClickFollow={onClickFollow}
+                  />
                );
             })}
          </ul>

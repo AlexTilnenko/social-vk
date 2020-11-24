@@ -26,23 +26,25 @@ export const toggleFollow = (id) => ({
    payload: id,
 });
 
-export const fetchUsers = (currentPage, pageSize) => (dispatch) => {
+export const fetchUsers = (currentPage, pageSize) => async (dispatch) => {
    dispatch(setLoadingProgress());
-   usersApi
-      .getUsers(currentPage, pageSize)
-      .then((resp) => {
-         dispatch(setUsers(resp));
-      })
-      .catch((e) => {
-         console.log(e);
-      });
+   const resp = await usersApi.getUsers(currentPage, pageSize);
+   dispatch(setUsers(resp));
 };
 
-export const fetchToggleFollow = (id) => (dispatch) => {
+const followUnfollowFlow = async (dispatch, id, apiMethod) => {
+   const resp = await apiMethod(id);
+   if (resp.resultCode === 0) {
+      dispatch(toggleFollow(id));
+   }
+};
+
+export const fetchFollow = (id) => async (dispatch) => {
    dispatch(setFollowingProgress({ isFetching: true, id }));
-   usersApi.toggleFollowUser(id).then((resp) => {
-      if (resp.resultCode === 0) {
-         dispatch(toggleFollow(id));
-      }
-   });
+   followUnfollowFlow(dispatch, id, usersApi.followUser);
+};
+
+export const fetchUnfollow = (id) => async (dispatch) => {
+   dispatch(setFollowingProgress({ isFetching: true, id }));
+   followUnfollowFlow(dispatch, id, usersApi.unfollowUser);
 };
