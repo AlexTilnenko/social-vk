@@ -5,7 +5,7 @@ import withAuthRedirect from '../hoc/withAuthRedirect';
 import Loader from '../../components/Loader/Loader';
 import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
 import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
-import Pagination from './Pagination';
+import Pagination from '../common/Pagination/Pagination';
 import User from './User';
 
 function Users() {
@@ -30,11 +30,18 @@ function Users() {
    return (
       <div className="users">
          {isLoading && <Loader />}
-         <Pagination pagesCount={pagesCount} currentPage={currentPage} onPageChange={onPageChange} />
+         <Pagination
+            pagesCount={pagesCount}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+            isLoading={isLoading}
+            visiblePagesSize={10}
+         />
          <ul className="users__list">
             {items.map(({ id, name, followed, photos }) => {
                return (
                   <User
+                     key={id}
                      id={id}
                      name={name}
                      photos={photos}
