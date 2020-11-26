@@ -1,3 +1,9 @@
+# Социальная сеть
+
+Stack: React(hooks), Redux, reselect, thunk, axios, jest, enzyme, classnames
+
+Ссылка на деплой https://alextilnenko.github.io/social-vk
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
