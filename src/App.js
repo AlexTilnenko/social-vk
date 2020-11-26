@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Messages from './components/Messages/Messages';
-import Users from './components/Users/Users';
-import Login from './components/Login/Login';
 import { initialize } from './actions/initialisation';
-import Loader from './components/Loader/Loader';
+import Loader from './components/common/Loader/Loader';
+import withSuspense from './components/hoc/withSuspense';
+const Messages = React.lazy(() => import('./components/Messages/Messages'));
+const Users = React.lazy(() => import('./components/Users/Users'));
+const Login = React.lazy(() => import('./components/Login/Login'));
 
 function App() {
    const dispatch = useDispatch();
@@ -35,18 +36,13 @@ function App() {
 
             <div className="container main-container">
                <Navbar />
-               <Route path="/profile/:userId?">
-                  <Profile />
+               <Route path="/" exact>
+                  <Redirect to="/profile" />
                </Route>
-               <Route path="/messanger" exact>
-                  <Messages />
-               </Route>
-               <Route path="/users" exact>
-                  <Users />
-               </Route>
-               <Route path="/login" exact>
-                  <Login />
-               </Route>
+               <Route path="/profile/:userId?" render={Profile} />
+               <Route path="/messanger" exact render={withSuspense(Messages)} />
+               <Route path="/users" exact render={withSuspense(Users)} />
+               <Route path="/login" exact render={withSuspense(Login)} />
             </div>
          </div>
       </div>

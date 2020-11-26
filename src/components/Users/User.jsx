@@ -4,7 +4,15 @@ import classNames from 'classnames';
 
 import photoHolder from '../../assets/img/user.png';
 
-function User({ id, name, photos, followed, followingInProgress, onClickUnfollow, onClickFollow }) {
+const User = React.memo(function User({
+   id,
+   name,
+   photos,
+   followed,
+   followingInProgress,
+   onClickUnfollow,
+   onClickFollow,
+}) {
    return (
       <li className="users__item block" key={id}>
          <Link to={`/profile/${id}`}>
@@ -22,6 +30,6 @@ function User({ id, name, photos, followed, followingInProgress, onClickUnfollow
          </button>
       </li>
    );
-}
+});
 
 export default User;

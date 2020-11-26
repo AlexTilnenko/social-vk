@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import withAuthRedirect from '../hoc/withAuthRedirect';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../common/Loader/Loader';
 import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
 import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
 import Pagination from '../common/Pagination/Pagination';
