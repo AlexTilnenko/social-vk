@@ -1,4 +1,4 @@
-import { SET_PROFILE, SET_USER_STATUS } from '../actions/types';
+import { SET_PROFILE, SET_USER_STATUS, SET_USER_PHOTOS } from '../actions/types';
 
 export const initialState = {
    userId: null,
@@ -30,6 +30,11 @@ const profile = (state = initialState, action) => {
             status: newStatusText,
          };
       }
+      case SET_USER_PHOTOS:
+         return {
+            ...state,
+            photos: action.payload,
+         };
       default:
          return state;
    }

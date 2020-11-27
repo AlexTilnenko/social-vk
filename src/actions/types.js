@@ -1,28 +1,33 @@
 //users
-export const SET_USERS = 'SET_USERS';
-export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-export const SET_LOADING = 'SET_LOADING';
-export const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER';
-export const SET_FOLLOWING = 'SET_FOLLOWING';
+export const SET_USERS = 'users/SET_USERS';
+export const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+export const SET_LOADING = 'users/SET_LOADING';
+export const TOGGLE_FOLLOW_USER = 'users/TOGGLE_FOLLOW_USER';
+export const SET_FOLLOWING = 'users/SET_FOLLOWING';
 
 //profile
-export const SET_PROFILE = 'SET_PROFILE';
-export const SET_USER_STATUS = 'SET_USER_STATUS';
+export const SET_PROFILE = 'profile/SET_PROFILE';
+export const SET_USER_STATUS = 'profile/SET_USER_STATUS';
+export const SET_USER_PHOTOS = 'profile/SET_USER_PHOTOS';
+
+//friends
+export const SET_FRIENDS = 'friends/SET_FRIENDS';
+export const SET_FRIENDS_PAGE = 'friends/SET_FRIENDS_PAGE';
 
 //posts
-export const SET_POSTS = 'SET_POSTS';
-export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const TOGGLE_LIKE_POST = 'TOGGLE_LIKE_POST';
+export const SET_POSTS = 'posts/SET_POSTS';
+export const ADD_POST = 'posts/ADD_POST';
+export const DELETE_POST = 'posts/DELETE_POST';
+export const TOGGLE_LIKE_POST = 'posts/TOGGLE_LIKE_POST';
 
 //messanger
-export const SET_ACTIVE_DIALOG = 'SET_ACTIVE_DIALOG';
-export const SEND_MESSAGE = 'SEND_MESSAGE';
-export const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
+export const SET_ACTIVE_DIALOG = 'messanger/SET_ACTIVE_DIALOG';
+export const SEND_MESSAGE = 'messanger/SEND_MESSAGE';
+export const CHANGE_NEW_MESSAGE = 'messanger/CHANGE_NEW_MESSAGE';
 
 //auth
-export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-export const SET_AUTH_CAPTCHA_URL = 'SET_AUTH_CAPTCHA_URL';
+export const SET_AUTH_USER_DATA = 'auth/SET_AUTH_USER_DATA';
+export const SET_AUTH_CAPTCHA_URL = 'auth/SET_AUTH_CAPTCHA_URL';
 
 //initialized
-export const SET_INITIALIZED = 'SET_INITIALIZED';
+export const SET_INITIALIZED = 'initialized/SET_INITIALIZED';

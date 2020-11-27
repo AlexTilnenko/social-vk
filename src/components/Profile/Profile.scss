@@ -1,45 +1,124 @@
 .profile {
-	margin: 25px 0 0 20px;
-	flex: 1 1 100%;
-	color: $dark;
+   margin: 25px 0 0 20px;
+   flex: 1 1 100%;
+   color: $dark;
 
-	&__header {
-		display: flex;
-		
-	}
-	&__photo {
-		width: 100%;
-		max-width: 280px;
-		height: 280px;
-		overflow: hidden;
+   &__header {
+      display: flex;
+
+   }
+
+   &__photo {
+      width: 100%;
+      max-width: 280px;
+      overflow: hidden;
       border-radius: $radius;
       padding: 20px;
       margin-left: 20px;
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-	}
-	&__info {
-      padding: 20px;
-		flex: 1 1 100%;
-	}
-	&__info-list {
-
    }
+
+   &__img {
+      overflow: hidden;
+      border-radius: $radius;
+
+      img {
+         width: 100%;
+         vertical-align: middle;
+         object-fit: cover;
+      }
+   }
+
+   &__info {
+      padding: 20px;
+      flex: 1 1 100%;
+   }
+
+   &__info-list {}
+
    &__info-item {
       position: relative;
       padding: 8px;
+
       span {
          color: $grey;
          margin-right: 5px;
       }
    }
 
-	&__info--name {
-		font-size: 1.8rem;
-		border-bottom: 1px solid $grey;
-	}
+   &__info--name {
+      font-size: 1.8rem;
+      border-bottom: 1px solid $grey;
+   }
 
+   &__bottom {
+      display: flex;
+   }
+
+   &__subscriptions {
+      flex: 0 1 280px;
+      margin: 15px 0 0 20px;
+      padding: 20px;
+      height: 100%;
+
+   }
+
+   &__subscriptions-count {
+      margin: 0 0 5px 0;
+   }
+}
+
+.update-photo {
+   margin-top: 15px;
+   height: 35px;
+
+   &__input {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+   }
+
+   &__label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 35px;
+      background-color: $white;
+      color: $blue;
+      border: 1px solid $blue;
+      border-radius: $radius;
+      transition: all ease-in $duration;
+
+      &:hover {
+         background-color: $blue-hover;
+         color: $white;
+      }
+   }
+}
+
+.profile-friend {
+   margin: 0 5px;
+   padding: 5px;
+   display: inline-block;
+   width: 70px;
+   overflow: hidden;
+   text-align: center;
+
+   &__img {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+
+      img {
+         max-width: 100%;
+      }
+   }
+
+   &__name {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-top: 5px;
+   }
 }

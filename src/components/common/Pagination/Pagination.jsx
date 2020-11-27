@@ -55,12 +55,12 @@ const Pagination = React.memo(function Pagination({
 
    return (
       <ul className="pagination">
-         {visiblePartNumber > 1 && (
-            <div className="pagination__btn-group">
+         <div className="pagination__btn-group">
+            {visiblePartNumber > 1 && (
                <NavButton handler={toStartHandler} disabledTrigger={isLoading} icoId="#double-arrow" />
-               <NavButton handler={prevPageHandler} disabledTrigger={isLoading} icoId="#arrow" />
-            </div>
-         )}
+            )}
+            {currentPage > 1 && <NavButton handler={prevPageHandler} disabledTrigger={isLoading} icoId="#arrow" />}
+         </div>
          {pages
             .filter((page) => page >= leftBorder && page <= rightBorder)
             .map((page) => {
@@ -76,12 +76,14 @@ const Pagination = React.memo(function Pagination({
                   </li>
                );
             })}
-         {visiblePartsCount > visiblePartNumber && (
-            <div className="pagination__btn-group">
+         <div className="pagination__btn-group">
+            {visiblePartsCount > visiblePartNumber && (
                <NavButton handler={toEndHandler} disabledTrigger={isLoading} icoId="#double-arrow" />
+            )}
+            {currentPage < pagesCount && (
                <NavButton handler={nextPageHandler} disabledTrigger={isLoading} icoId="#arrow" />
-            </div>
-         )}
+            )}
+         </div>
          {pages.length > 10 && (
             <Formik
                initialValues={{

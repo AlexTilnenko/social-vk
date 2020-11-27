@@ -7,8 +7,10 @@ export const userInstance = axios.create({
 });
 
 export const usersApi = {
-   getUsers(currentPage, pageSize) {
-      return userInstance.get(`users?page=${currentPage}&count=${pageSize}`).then((resp) => resp.data);
+   getUsers(currentPage, pageSize, userName = '', isFriends = null) {
+      return userInstance
+         .get(`users?page=${currentPage}&count=${pageSize}${userName ? `&term=${userName}` : ''}&friend=${isFriends} `)
+         .then((resp) => resp.data);
    },
    followUser(userId) {
       return userInstance.post(`follow/${userId}`).then((resp) => resp.data);
@@ -31,6 +33,17 @@ export const profileApi = {
             status: `${statusValue}`,
          })
          .then((resp) => resp);
+   },
+   putUserPhoto(photo) {
+      const formData = new FormData();
+      formData.append('image', photo);
+      return userInstance
+         .put(`profile/photo`, formData, {
+            headers: {
+               'Content-Type': 'multipart/form-data',
+            },
+         })
+         .then((resp) => resp.data);
    },
 };
 

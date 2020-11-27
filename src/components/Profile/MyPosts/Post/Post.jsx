@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import sprite from '../../../../assets/img/sprite.svg';
 
 // const Post = React.memo(
-function Post({ post, avatar, onDeletePost, onLikePost }) {
+function Post({ post, avatar, onDeletePost, onLikePost, myId, userId }) {
    const { id, text, img, likeCount, liked } = post;
    return (
       <div className="block post">
@@ -26,11 +26,13 @@ function Post({ post, avatar, onDeletePost, onLikePost }) {
             </svg>
          </button>
 
-         <button className="btn btn--remove-post" onClick={() => onDeletePost(id)}>
-            <svg>
-               <use href={sprite + '#trash'} />
-            </svg>
-         </button>
+         {myId === userId && (
+            <button className="btn btn--remove-post" onClick={() => onDeletePost(id)}>
+               <svg>
+                  <use href={sprite + '#trash'} />
+               </svg>
+            </button>
+         )}
       </div>
    );
 }

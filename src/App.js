@@ -11,6 +11,7 @@ import withSuspense from './components/hoc/withSuspense';
 const Messages = React.lazy(() => import('./components/Messages/Messages'));
 const Users = React.lazy(() => import('./components/Users/Users'));
 const Login = React.lazy(() => import('./components/Login/Login'));
+const Friends = React.lazy(() => import('./components/Friends/Friends'));
 
 function App() {
    const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
                <Route path="/messanger" exact render={withSuspense(Messages)} />
                <Route path="/users" exact render={withSuspense(Users)} />
                <Route path="/login" exact render={withSuspense(Login)} />
+               <Route path="/friends" exact render={withSuspense(Friends)} />
             </div>
          </div>
       </div>

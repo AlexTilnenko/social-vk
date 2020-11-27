@@ -16,6 +16,14 @@ function Navbar() {
                </Link>
             </li>
             <li className="navbar__list-item">
+               <Link to="/friends" className="navbar__list-link">
+                  <svg className="navbar__list-ico">
+                     <use href={sprite + '#friends'} />
+                  </svg>
+                  <span>Друзья</span>
+               </Link>
+            </li>
+            <li className="navbar__list-item">
                <Link to="/messanger" className="navbar__list-link">
                   <svg className="navbar__list-ico">
                      <use href={sprite + '#messages'} />
@@ -31,14 +39,7 @@ function Navbar() {
                   <span>Пользователи</span>
                </Link>
             </li>
-            <li className="navbar__list-item">
-               <a href="/" className="navbar__list-link">
-                  <svg className="navbar__list-ico">
-                     <use href={sprite + '#news'} />
-                  </svg>
-                  <span>Новости</span>
-               </a>
-            </li>
+
             <li className="navbar__list-item">
                <a href="/" className="navbar__list-link">
                   <svg className="navbar__list-ico">
