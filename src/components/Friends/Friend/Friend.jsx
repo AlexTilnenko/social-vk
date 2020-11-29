@@ -21,7 +21,7 @@ function Friend({ img, name, id, status, followed, onClickFollow, onClickUnfollo
             className={classNames('btn', { 'btn--unfollow': followed, 'btn--follow': !followed })}
             onClick={followed ? () => onClickUnfollow(id) : () => onClickFollow(id)}
          >
-            {followed ? 'Вы подписаны' : 'Подписаться'}
+            {followed ? 'Отписаться' : 'Подписаться'}
          </button>
       </div>
    );

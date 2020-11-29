@@ -2,6 +2,7 @@ body {
    font-family: "Roboto", sans-serif;
    font-size: 14px;
    color: $dark;
+   overflow-y: scroll;
 }
 
 .container {
@@ -127,7 +128,6 @@ body {
       }
 
       &:focus {
-         background-color: $blue-hover;
          text-decoration: underline;
       }
    }
@@ -166,12 +166,17 @@ body {
 .add-form {
    display: flex;
    align-items: center;
-}
 
-.add-form-field {
-   padding: 8px 12px;
-   flex: 1 1 100%;
-   border-radius: $radius 0 0 $radius;
-   outline: none;
-   transition: all ease-out $duration;
+   &-field {
+      padding: 7px 11px;
+      flex: 1 1 100%;
+      border-radius: $radius 0 0 $radius;
+      outline: none;
+      transition: all ease-out $duration;
+      border: 1px solid $white;
+
+      &:focus {
+         border: 1px solid $blue;
+      }
+   }
 }

@@ -28,7 +28,7 @@ export const toggleFollow = (id) => ({
 
 export const fetchUsers = (currentPage, pageSize) => async (dispatch) => {
    dispatch(setLoadingProgress());
-   const resp = await usersApi.getUsers(currentPage, pageSize);
+   const resp = await usersApi.getUsers(currentPage, pageSize, null, false);
    dispatch(setUsers(resp));
 };
 

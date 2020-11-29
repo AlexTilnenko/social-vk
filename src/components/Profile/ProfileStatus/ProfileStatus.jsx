@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateUserStatus } from '../../../actions/profile';
-
+import classNames from 'classnames';
 const ProfileStatus = React.memo(function ProfileStatus({ status, userId, myId }) {
    const dispatch = useDispatch();
    const statusRef = useRef();
@@ -48,25 +48,29 @@ const ProfileStatus = React.memo(function ProfileStatus({ status, userId, myId }
    return (
       <div className="profile-status">
          {userId === myId ? (
-            !editStatus ? (
-               <div className="profile-status__label" onClick={() => setEditStatus(true)}>
-                  {status || 'Нажмите что бы добавить статус'}
+            <>
+               <div className="profile-status__label">
+                  <div className="profile-status__field" onClick={() => setEditStatus(true)}>
+                     {status || 'Нажмите что бы добавить статус'}
+                  </div>
+                  {status && <div className="profile-status__message">Нажмите что бы изменить статус</div>}
                </div>
-            ) : (
-               <div className="profile-status__edit" ref={statusRef}>
-                  <div className="profile-status__title">Введите текст нового статуса</div>
-                  <input
-                     autoFocus
-                     type="text"
-                     className="profile-status__input"
-                     value={newStatus}
-                     onChange={onStatusChange}
-                  />
-                  <button className="btn btn--status-save" onClick={() => saveStatus(newStatus)}>
-                     Сохранить
-                  </button>
-               </div>
-            )
+               {
+                  <div className={classNames('profile-status__edit', { active: editStatus })} ref={statusRef}>
+                     <div className="profile-status__title">Введите текст нового статуса</div>
+                     <input
+                        autoFocus
+                        type="text"
+                        className="profile-status__input"
+                        value={newStatus}
+                        onChange={onStatusChange}
+                     />
+                     <button className="btn btn--status-save" onClick={() => saveStatus(newStatus)}>
+                        Сохранить
+                     </button>
+                  </div>
+               }
+            </>
          ) : (
             <div className="profile-status__label">{status}</div>
          )}

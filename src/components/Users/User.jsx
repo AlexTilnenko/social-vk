@@ -16,7 +16,7 @@ const User = React.memo(function User({
    return (
       <li className="users__item block" key={id}>
          <Link to={`/profile/${id}`}>
-            <span className="users__item-photo avatar">
+            <span className="users__item-photo">
                <img src={photos.large || photoHolder} alt={name} />
             </span>
             <span className="users__item-name">{name}</span>

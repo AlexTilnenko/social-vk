@@ -1,19 +1,22 @@
 .header {
-	height: 40px;
-	width: 100%;
-	background-color: $blue;
+   height: 40px;
+   width: 100%;
+   background-color: $blue;
+
    &-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
    }
-	&__logo svg {
-		width: 35px;
-		height: 35px;
-		fill: #fff;
+
+   &__logo svg {
+      width: 35px;
+      height: 35px;
+      fill: #fff;
    }
+
    &__auth {
       color: $white;
    }
-   
+
 }

@@ -1,11 +1,11 @@
-import { SET_FRIENDS, SET_FRIENDS_PAGE } from '../actions/types';
+import { SET_FRIENDS, SET_FRIENDS_PAGE, TOGGLE_FOLLOW_USER, SET_FRIENDS_FETCHING } from '../actions/types';
 
 export const initialState = {
    items: [],
    totalCount: 0,
    pageSize: 10,
    currentPage: 1,
-   isLoading: false,
+   isFetching: true,
 };
 
 const profile = (state = initialState, action) => {
@@ -13,13 +13,31 @@ const profile = (state = initialState, action) => {
       case SET_FRIENDS:
          return {
             ...state,
-            items: [...action.payload.items],
+            items: [...state.items, ...action.payload.items],
             totalCount: action.payload.totalCount,
+         };
+      case SET_FRIENDS_FETCHING:
+         return {
+            ...state,
+            isFetching: action.payload,
          };
       case SET_FRIENDS_PAGE:
          return {
             ...state,
             currentPage: action.payload,
+         };
+      case TOGGLE_FOLLOW_USER:
+         const currentUser = state.items.filter((item) => item.id === action.payload)[0];
+         return {
+            ...state,
+            items: state.items.map((user) => {
+               return user.id === action.payload ? { ...user, followed: !user.followed } : user;
+            }),
+            totalCount: currentUser
+               ? currentUser.followed
+                  ? state.totalCount - 1
+                  : state.totalCount + 1
+               : state.totalCount,
          };
       default:
          return state;

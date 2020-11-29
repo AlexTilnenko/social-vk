@@ -1,10 +1,8 @@
 .users {
-   // position: relative;
    width: 100%;
 
    &__list {
       display: flex;
-      // flex-direction: column;
       flex-wrap: wrap;
    }
 
@@ -15,16 +13,23 @@
       margin: 10px;
       padding: 10px;
       width: 100%;
-      max-width: 150px;
+      max-width: 200px;
+      text-align: center;
    }
 
    &__item-photo {
-      margin: 0 auto;
+      display: block;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
 
+      & img {
+         max-width: 100%;
+      }
    }
 
    &__item-name {
       display: block;
-      margin-bottom: 8px;
+      margin: 8px 0;
    }
 }
