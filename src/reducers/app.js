@@ -4,7 +4,7 @@ export const initialState = {
    initialized: false,
 };
 
-const initialisation = (state = initialState, action) => {
+const app = (state = initialState, action) => {
    switch (action.type) {
       case SET_INITIALIZED:
          return {
@@ -16,4 +16,4 @@ const initialisation = (state = initialState, action) => {
    }
 };
 
-export default initialisation;
+export default app;

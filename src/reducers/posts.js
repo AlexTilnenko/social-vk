@@ -1,29 +1,32 @@
-import {SET_POSTS, ADD_POST, DELETE_POST, TOGGLE_LIKE_POST} from '../actions/types';
+import { SET_POSTS, ADD_POST, DELETE_POST, TOGGLE_LIKE_POST } from '../actions/types';
 
 const initialState = {
    activePosts: [
       {
          id: 1,
-         text: 'Some interesting post',
-         likeCount: 0,
-         liked: false
+         text: '',
+         description: 'обновил(-а) фотографию',
+         likeCount: Math.round(Math.random() * 1000),
+         liked: true,
       },
       {
          id: 2,
-         text: 'Some post about pandas',
-         likeCount: 1,
-         liked: true
-      }
-   ]
-}
+         text: '',
+         description: 'поделился(-лась) новым статусом',
+         likeCount: Math.round(Math.random() * 1000),
+         liked: false,
+      },
+   ],
+};
 
 const posts = (state = initialState, action) => {
-   switch(action.type) {
+   switch (action.type) {
       case SET_POSTS:
          return state;
       case ADD_POST:
          const newPost = {
             id: Date.now(),
+            description: 'запостил(-а) что-то интересное',
             text: action.payload,
             likeCount: 0,
             liked: false,
@@ -31,39 +34,38 @@ const posts = (state = initialState, action) => {
          return {
             ...state,
             activePosts: [newPost, ...state.activePosts],
-
-         }
-      case DELETE_POST:{
+         };
+      case DELETE_POST: {
          return {
             ...state,
-            activePosts: state.activePosts.filter(post => post.id !== action.payload )
-         }
+            activePosts: state.activePosts.filter((post) => post.id !== action.payload),
+         };
       }
-      case TOGGLE_LIKE_POST:{
+      case TOGGLE_LIKE_POST: {
          return {
             ...state,
-            activePosts: state.activePosts.map(post => {
+            activePosts: state.activePosts.map((post) => {
                if (post.id === action.payload && !post.liked) {
                   return {
                      ...post,
                      likeCount: ++post.likeCount,
-                     liked: true
-                  }
+                     liked: true,
+                  };
                } else if (post.id === action.payload && post.liked) {
                   return {
                      ...post,
                      likeCount: --post.likeCount,
-                     liked: false
-                  } 
+                     liked: false,
+                  };
                } else {
                   return post;
                }
-            })
-         }
+            }),
+         };
       }
       default:
          return state;
    }
-}
+};
 
 export default posts;

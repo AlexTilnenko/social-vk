@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import withAuthRedirect from '../hoc/withAuthRedirect';
-import Loader from '../common/Loader/Loader';
-import { fetchUsers, setCurrentPage, fetchFollow, fetchUnfollow } from '../../actions/users';
-import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
-import Pagination from '../common/Pagination/Pagination';
 import User from './User';
+import Loader from '../common/Loader/Loader';
+import Pagination from '../common/Pagination/Pagination';
+import { fetchUsers, setCurrentPage } from '../../actions/users';
+import { selectUserPagesCount, selectUsersData } from '../../selectors/usersSelectors';
+import withFollowUnfollow from '../hoc/withFollowUnfollow';
 
-function Users() {
+function Users({ followHandler, unfollowHandler }) {
    const dispatch = useDispatch();
    const { items, pageSize, currentPage, isLoading, followingInProgress } = useSelector(selectUsersData);
    const pagesCount = useSelector(selectUserPagesCount);
@@ -18,13 +18,6 @@ function Users() {
 
    const onPageChange = (page) => {
       dispatch(setCurrentPage(page));
-   };
-
-   const onClickFollow = (id) => {
-      dispatch(fetchFollow(id));
-   };
-   const onClickUnfollow = (id) => {
-      dispatch(fetchUnfollow(id));
    };
 
    return (
@@ -47,8 +40,8 @@ function Users() {
                      photos={photos}
                      followed={followed}
                      followingInProgress={followingInProgress}
-                     onClickUnfollow={onClickUnfollow}
-                     onClickFollow={onClickFollow}
+                     followHandler={followHandler}
+                     unfollowHandler={unfollowHandler}
                   />
                );
             })}
@@ -57,4 +50,4 @@ function Users() {
    );
 }
 
-export default compose(withAuthRedirect)(Users);
+export default compose(withFollowUnfollow)(Users);

@@ -1,145 +1,124 @@
-@keyframes ldio-uqseqks461j {
+@keyframes ldio-b4v96odh9ut {
    0% {
-      opacity: 1;
-      backface-visibility: hidden;
-      transform: translateZ(0) scale(1.5, 1.5);
+      transform: translate(4px, 38px) scale(0);
+   }
+
+   25% {
+      transform: translate(4px, 38px) scale(0);
+   }
+
+   50% {
+      transform: translate(4px, 38px) scale(1);
+   }
+
+   75% {
+      transform: translate(38px, 38px) scale(1);
    }
 
    100% {
-      opacity: 0;
-      backface-visibility: hidden;
-      transform: translateZ(0) scale(1, 1);
+      transform: translate(72px, 38px) scale(1);
    }
 }
 
-.ldio-uqseqks461j div>div {
+@keyframes ldio-b4v96odh9ut-r {
+   0% {
+      transform: translate(72px, 38px) scale(1);
+   }
+
+   100% {
+      transform: translate(72px, 38px) scale(0);
+   }
+}
+
+@keyframes ldio-b4v96odh9ut-c {
+   0% {
+      background: #456caa
+   }
+
+   25% {
+      background: #fefefe
+   }
+
+   50% {
+      background: #c2d2ee
+   }
+
+   75% {
+      background: #88a2ce
+   }
+
+   100% {
+      background: #456caa
+   }
+}
+
+.ldio-b4v96odh9ut div {
    position: absolute;
-   width: 12px;
-   height: 12px;
+   width: 24px;
+   height: 24px;
    border-radius: 50%;
-   background: #2a5885;
-   animation: ldio-uqseqks461j 1s linear infinite;
+   transform: translate(38px, 38px) scale(1);
+   background: #456caa;
+   animation: ldio-b4v96odh9ut 1.25s infinite cubic-bezier(0, 0.5, 0.5, 1);
 }
 
-.ldio-uqseqks461j div:nth-child(1)>div {
-   left: 74px;
-   top: 44px;
-   animation-delay: -0.875s;
+.ldio-b4v96odh9ut div:nth-child(1) {
+   background: #88a2ce;
+   transform: translate(72px, 38px) scale(1);
+   animation: ldio-b4v96odh9ut-r 0.3125s infinite cubic-bezier(0, 0.5, 0.5, 1), ldio-b4v96odh9ut-c 1.25s infinite step-start;
 }
 
-.ldio-uqseqks461j>div:nth-child(1) {
-   transform: rotate(0deg);
-   transform-origin: 80px 50px;
+.ldio-b4v96odh9ut div:nth-child(2) {
+   animation-delay: -0.3125s;
+   background: #456caa;
 }
 
-.ldio-uqseqks461j div:nth-child(2)>div {
-   left: 65px;
-   top: 65px;
-   animation-delay: -0.75s;
-}
-
-.ldio-uqseqks461j>div:nth-child(2) {
-   transform: rotate(45deg);
-   transform-origin: 71px 71px;
-}
-
-.ldio-uqseqks461j div:nth-child(3)>div {
-   left: 44px;
-   top: 74px;
+.ldio-b4v96odh9ut div:nth-child(3) {
    animation-delay: -0.625s;
+   background: #88a2ce;
 }
 
-.ldio-uqseqks461j>div:nth-child(3) {
-   transform: rotate(90deg);
-   transform-origin: 50px 80px;
+.ldio-b4v96odh9ut div:nth-child(4) {
+   animation-delay: -0.9375s;
+   background: #c2d2ee;
 }
 
-.ldio-uqseqks461j div:nth-child(4)>div {
-   left: 23px;
-   top: 65px;
-   animation-delay: -0.5s;
+.ldio-b4v96odh9ut div:nth-child(5) {
+   animation-delay: -1.25s;
+   background: $blue;
 }
 
-.ldio-uqseqks461j>div:nth-child(4) {
-   transform: rotate(135deg);
-   transform-origin: 29px 71px;
-}
-
-.ldio-uqseqks461j div:nth-child(5)>div {
-   left: 14px;
-   top: 44px;
-   animation-delay: -0.375s;
-}
-
-.ldio-uqseqks461j>div:nth-child(5) {
-   transform: rotate(180deg);
-   transform-origin: 20px 50px;
-}
-
-.ldio-uqseqks461j div:nth-child(6)>div {
-   left: 23px;
-   top: 23px;
-   animation-delay: -0.25s;
-}
-
-.ldio-uqseqks461j>div:nth-child(6) {
-   transform: rotate(225deg);
-   transform-origin: 29px 29px;
-}
-
-.ldio-uqseqks461j div:nth-child(7)>div {
-   left: 44px;
-   top: 14px;
-   animation-delay: -0.125s;
-}
-
-.ldio-uqseqks461j>div:nth-child(7) {
-   transform: rotate(270deg);
-   transform-origin: 50px 20px;
-}
-
-.ldio-uqseqks461j div:nth-child(8)>div {
-   left: 65px;
-   top: 23px;
-   animation-delay: 0s;
-}
-
-.ldio-uqseqks461j>div:nth-child(8) {
-   transform: rotate(315deg);
-   transform-origin: 71px 29px;
-}
-
-.loadingio-spinner-spin-xyau1cuxpv {
+.loadingio-spinner-ellipsis-yiy7zzami3p {
    width: 50px;
    height: 50px;
    display: inline-block;
    overflow: hidden;
    background: none;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
+   position: relative;
 }
 
-.ldio-uqseqks461j {
+.ldio-b4v96odh9ut {
    width: 100%;
    height: 100%;
    position: relative;
    transform: translateZ(0) scale(0.5);
    backface-visibility: hidden;
    transform-origin: 0 0;
-   /* see note above */
 }
 
-.ldio-uqseqks461j div {
+.ldio-b4v96odh9ut div {
    box-sizing: content-box;
 }
 
-.spinner {
+.loader {
    position: absolute;
+   z-index: 100;
    top: 0;
    left: 0;
-   width: 100%;
-   min-height: 100%;
-   background-color: rgba($blue, .2);
+   bottom: 0;
+   right: 0;
+   background-color: rgba($white, 0.3);
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
 }

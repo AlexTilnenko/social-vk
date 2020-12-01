@@ -22,7 +22,9 @@ export const usersApi = {
 
 export const profileApi = {
    getUserProfile(userId) {
-      return userInstance.get(`profile/${userId}`).then((resp) => resp.data);
+      return userInstance.get(`profile/${userId}`).then((resp) => {
+         return resp.data;
+      });
    },
    getUserStatus(userId) {
       return userInstance.get(`profile/status/${userId}`).then((resp) => resp.data);
@@ -44,6 +46,9 @@ export const profileApi = {
             },
          })
          .then((resp) => resp.data);
+   },
+   putUserProfile(id, data) {
+      return userInstance.put('profile', { userId: id, ...data }).then((resp) => resp);
    },
 };
 

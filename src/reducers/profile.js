@@ -1,4 +1,10 @@
-import { SET_PROFILE, SET_USER_STATUS, SET_USER_PHOTOS } from '../actions/types';
+import {
+   SET_PROFILE,
+   SET_USER_STATUS,
+   SET_USER_PHOTOS,
+   SET_PROFILE_FETCHING,
+   SET_USER_CONTACTS_LINK,
+} from '../actions/types';
 
 export const initialState = {
    userId: null,
@@ -14,6 +20,7 @@ export const initialState = {
       github: null,
    },
    status: '',
+   isFetching: false,
 };
 
 const profile = (state = initialState, action) => {
@@ -22,6 +29,11 @@ const profile = (state = initialState, action) => {
          return {
             ...state,
             ...action.payload,
+         };
+      case SET_PROFILE_FETCHING:
+         return {
+            ...state,
+            isFetching: action.payload,
          };
       case SET_USER_STATUS: {
          const newStatusText = action.payload ? action.payload.trim() : '';
@@ -34,6 +46,14 @@ const profile = (state = initialState, action) => {
          return {
             ...state,
             photos: action.payload,
+         };
+      case SET_USER_CONTACTS_LINK:
+         return {
+            ...state,
+            contacts: {
+               ...state.contacts,
+               [action.payload.linkName]: !action.payload.isAdd ? '' : `https://${action.payload.linkName}.com`,
+            },
          };
       default:
          return state;

@@ -5,7 +5,7 @@ import posts from './posts';
 import messanger from './messanger';
 import users from './users';
 import auth from './auth';
-import initialisation from './initialisation';
+import app from './app';
 import friends from './friends';
 
 const rootReducer = combineReducers({
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
    messanger,
    users,
    auth,
-   initialisation,
+   app,
    friends,
 });
 

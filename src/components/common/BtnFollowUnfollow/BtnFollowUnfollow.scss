@@ -1,0 +1,30 @@
+   .btn {
+
+      &--follow,
+      &--unfollow {
+         padding: 4px 8px;
+         width: 100%;
+         max-width: 120px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: all ease-in $duration;
+      }
+
+      &--follow {
+         border: 1px solid $blue;
+         background-color: $blue;
+         color: $white;
+      }
+
+      &--unfollow {
+         background-color: $white;
+         border: 1px solid $blue;
+         color: $blue;
+
+         &:hover {
+            background-color: $blue;
+            color: $white;
+         }
+      }
+   }

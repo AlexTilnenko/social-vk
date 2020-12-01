@@ -2,33 +2,14 @@ import React from 'react';
 
 function Loader() {
    return (
-      <div className="spinner">
-         <div className="loadingio-spinner-spin-xyau1cuxpv">
-            <div className="ldio-uqseqks461j">
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
-               <div>
-                  <div></div>
-               </div>
+      <div className="loader">
+         <div className="loadingio-spinner-ellipsis-yiy7zzami3p">
+            <div className="ldio-b4v96odh9ut">
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
             </div>
          </div>
       </div>

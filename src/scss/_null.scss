@@ -61,6 +61,10 @@ input[type=number] {
 
 button {
    cursor: pointer;
+
+   &:focus {
+      text-decoration: underline;
+   }
 }
 
 button::-moz-focus-inner {

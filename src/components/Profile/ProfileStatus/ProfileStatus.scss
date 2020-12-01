@@ -1,8 +1,8 @@
 .profile-status {
    position: relative;
 
-
    &__label {
+      height: 1.1rem;
       font-size: 1.2rem;
       cursor: pointer;
       display: inline-block;
@@ -55,6 +55,7 @@
    &__save {}
 
    &__message {
+      cursor: default;
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);

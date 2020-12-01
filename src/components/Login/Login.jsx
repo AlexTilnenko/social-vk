@@ -61,7 +61,7 @@ function Login() {
                   />
                   {errors.password && touched.password ? <div className="error-message">{errors.password}</div> : null}
 
-                  <div className="login-form__item">
+                  <div className="login-form__item checkbox">
                      <Field className="login-form-checkbox" type="checkbox" id="rememberMe" name="rememberMe" />
                      <label className="login-form-label" htmlFor="rememberMe">
                         Запомнить меня

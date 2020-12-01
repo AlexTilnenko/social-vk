@@ -7,7 +7,7 @@ body {
 
 .container {
    width: 100%;
-   max-width: 1230px;
+   max-width: 1100px;
    margin: 0 auto;
    padding: 0 15px;
 }
@@ -57,7 +57,7 @@ body {
       font-size: 1.1rem;
       position: absolute;
       bottom: 15px;
-      left: 15px;
+      right: 15px;
       color: $dark;
       background-color: transparent;
       display: flex;
@@ -67,34 +67,6 @@ body {
          width: 15px;
          height: 15px;
          transition: all ease-in $duration;
-      }
-   }
-
-   &--follow,
-   &--unfollow {
-      padding: 4px 8px;
-      width: 100%;
-      max-width: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all ease-in $duration;
-   }
-
-   &--follow {
-      border: 1px solid $blue;
-      background-color: $blue;
-      color: $white;
-   }
-
-   &--unfollow {
-      background-color: $white;
-      border: 1px solid $blue;
-      color: $blue;
-
-      &:hover {
-         background-color: $blue;
-         color: $white;
       }
    }
 
@@ -111,18 +83,23 @@ body {
    }
 
    &--logout {
-      padding: 7px 15px;
       background-color: $white;
-      color: $blue;
-      padding: 5px;
-      margin: 0 0 0 15px;
+      color: #000;
+   }
+
+   &--profile-save {
+      margin: 0 auto;
+      padding: 5px 10px;
+      background-color: $blue;
+      max-width: 200px;
    }
 
    &--status-save,
    &--follow,
    &--unfollow,
    &--add-form,
-   &--login {
+   &--login,
+   &--profile-save {
       &:hover {
          background-color: $blue-hover;
       }
@@ -177,6 +154,51 @@ body {
 
       &:focus {
          border: 1px solid $blue;
+      }
+   }
+}
+
+.checkbox {
+
+   input:checked+label:after {
+      opacity: 1;
+   }
+
+   label {
+      display: inline-block;
+      margin: 10px 0;
+      cursor: pointer;
+      position: relative;
+      padding-left: 25px;
+
+      &:before {
+         content: '';
+         -webkit-appearance: none;
+         background-color: transparent;
+         border: 2px solid $blue;
+         width: 18px;
+         height: 18px;
+         border-radius: $radius;
+         position: absolute;
+         top: 50%;
+         left: 0;
+         transform: translateY(-50%);
+         cursor: pointer;
+      }
+
+      &:after {
+         content: '';
+         display: block;
+         position: absolute;
+         opacity: 0;
+         top: 1px;
+         left: 7px;
+         width: 5px;
+         height: 12px;
+         border: solid $blue;
+         border-width: 0 2px 2px 0;
+         transform: rotate(45deg);
+         transition: $duration all ease-in;
       }
    }
 }

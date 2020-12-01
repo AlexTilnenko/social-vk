@@ -10,3 +10,13 @@ export const SiginSchema = yup.object().shape({
    rememberMe: yup.bool(),
    captcha: yup.string(),
 });
+
+export const SettingsSchema = yup.object().shape({
+   fullName: yup.string().min(6, 'Минимум 6 символов').max(30, 'Максимум 30 символов').required('Обязательное поле'),
+   aboutMe: yup.string().min(6, 'Минимум 6 символов').max(80, 'Максимум 80 символов').required('Обязательное поле'),
+   lookingForAJobDescription: yup
+      .string()
+      .min(6, 'Минимум 6 символов')
+      .max(80, 'Максимум 80 символов')
+      .required('Обязательное поле'),
+});

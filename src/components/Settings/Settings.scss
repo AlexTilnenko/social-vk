@@ -1,0 +1,139 @@
+.settings {
+   margin-top: 30px;
+   padding: 20px;
+   background-color: $white;
+   border-radius: $radius;
+   box-shadow: $shadow;
+   width: 100%;
+   max-width: 500px;
+   position: relative;
+
+   &__status-message {
+      width: 100%;
+      max-width: 300px;
+      position: absolute;
+      border-radius: $radius;
+
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $white;
+      padding: 20px 40px;
+      box-shadow: $shadow;
+
+   }
+
+   &__title {
+      margin: 0 0 10px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+   }
+
+   &-form {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .error-message {
+      text-align: center;
+   }
+
+   &-form__item {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+   }
+
+   &-form--label {
+      width: 100%;
+      max-width: 100px;
+   }
+
+   &-form--input {
+      width: 100%;
+      padding: 5px 10px;
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: $radius;
+      transition: $transition;
+
+      &:focus {
+         border: 1px solid $blue;
+      }
+   }
+
+}
+
+.error {
+   border: 1px solid red;
+}
+
+.contacts {
+   margin: 10px 0;
+
+   &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid $blue;
+   }
+
+   &__title {}
+
+   &__btn {
+      background-color: transparent;
+      color: $dark;
+      transition: $transition;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+
+   &__body {
+      position: relative;
+   }
+
+   &__empty-links {
+      top: -30px;
+      right: 0;
+      position: absolute;
+      background-color: $white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: $radius;
+      box-shadow: $shadow;
+      visibility: hidden;
+      opacity: 0;
+      transition: $transition;
+
+      &.active {
+         top: -40px;
+         visibility: visible;
+         opacity: 1;
+      }
+
+      span {
+         border: 1px solid $blue;
+         border-radius: $radius;
+         text-align: center;
+         display: block;
+         padding: 5px 10px;
+         margin: 5px;
+         cursor: pointer;
+         transition: $transition;
+
+         &:hover {
+            background-color: $blue;
+            color: $white;
+         }
+      }
+
+      &-title {
+         font-size: 1.1rem;
+         margin-bottom: 10px;
+      }
+   }
+}

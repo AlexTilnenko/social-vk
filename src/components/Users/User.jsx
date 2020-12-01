@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import BtnFollowUnfollow from '../common/BtnFollowUnfollow/BtnFollowUnfollow';
 
 import photoHolder from '../../assets/img/user.png';
 
@@ -10,8 +11,8 @@ const User = React.memo(function User({
    photos,
    followed,
    followingInProgress,
-   onClickUnfollow,
-   onClickFollow,
+   followHandler,
+   unfollowHandler,
 }) {
    return (
       <li className="users__item block" key={id}>
@@ -21,15 +22,25 @@ const User = React.memo(function User({
             </span>
             <span className="users__item-name">{name}</span>
          </Link>
-         <button
-            className={classNames('btn', { 'btn--unfollow': followed, 'btn--follow': !followed })}
-            onClick={followed ? () => onClickUnfollow(id) : () => onClickFollow(id)}
-            disabled={followingInProgress.some((item) => item === id)}
-         >
-            {followed ? 'Вы подписаны' : 'Подписаться'}
-         </button>
+         <BtnFollowUnfollow
+            id={id}
+            followed={followed}
+            followHandler={followHandler}
+            unfollowHandler={unfollowHandler}
+            followingInProgress={followingInProgress}
+         />
       </li>
    );
 });
+
+User.propTypes = {
+   id: PropTypes.number.isRequired,
+   name: PropTypes.string,
+   photos: PropTypes.object,
+   followed: PropTypes.bool,
+   followingInProgress: PropTypes.array.isRequired,
+   followHandler: PropTypes.func.isRequired,
+   unfollowHandler: PropTypes.func.isRequired,
+};
 
 export default User;

@@ -16,7 +16,52 @@
    }
 
    &__auth {
+      position: relative;
+
+      &:hover .header__auth-popup {
+         opacity: 1;
+         visibility: visible;
+         top: 18px;
+      }
+
+      &-item {
+         font-size: 1.1rem;
+         margin-bottom: 10px;
+         color: $blue;
+         display: block;
+         text-align: left;
+
+         &:hover {
+            text-decoration: underline;
+         }
+
+         &:last-child {
+            margin: 0;
+         }
+      }
+   }
+
+   &__auth-login {
       color: $white;
+      cursor: pointer;
+
+   }
+
+   &__auth-popup {
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      min-width: 120px;
+      position: absolute;
+      top: 23px;
+      left: 0;
+      z-index: 2;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: $shadow;
+      background-color: $white;
+      border-radius: $radius;
+      transition: $transition;
    }
 
 }

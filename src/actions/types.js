@@ -9,11 +9,12 @@ export const SET_FOLLOWING = 'users/SET_FOLLOWING';
 export const SET_PROFILE = 'profile/SET_PROFILE';
 export const SET_USER_STATUS = 'profile/SET_USER_STATUS';
 export const SET_USER_PHOTOS = 'profile/SET_USER_PHOTOS';
+export const SET_PROFILE_FETCHING = 'profile/SET_PROFILE_FETCHING';
+export const SET_USER_CONTACTS_LINK = 'profile/SET_USER_CONTACTS_LINK';
 
 //friends
 export const SET_FRIENDS = 'friends/SET_FRIENDS';
 export const SET_FRIENDS_PAGE = 'friends/SET_FRIENDS_PAGE';
-export const SET_FRIENDS_FETCHING = 'friends/SET_FRIENDS_FETCHING';
 
 //posts
 export const SET_POSTS = 'posts/SET_POSTS';
@@ -30,5 +31,5 @@ export const CHANGE_NEW_MESSAGE = 'messanger/CHANGE_NEW_MESSAGE';
 export const SET_AUTH_USER_DATA = 'auth/SET_AUTH_USER_DATA';
 export const SET_AUTH_CAPTCHA_URL = 'auth/SET_AUTH_CAPTCHA_URL';
 
-//initialized
-export const SET_INITIALIZED = 'initialized/SET_INITIALIZED';
+//app
+export const SET_INITIALIZED = 'app/SET_INITIALIZED';

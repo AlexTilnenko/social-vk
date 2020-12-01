@@ -2,39 +2,62 @@
    margin-top: 15px;
    padding: 15px;
    display: flex;
+   align-items: flex-start;
    position: relative;
 
 
    &__author {
-      max-width: 50px;
-      height: 50px;
-      overflow: hidden;
-      border-radius: 50%;
-      img {
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &-img {
+         max-width: 50px;
+         height: 50px;
+         overflow: hidden;
+         border-radius: 50%;
+
+         img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
       }
+
+      &-name {
+         margin: 5px 0 0 0;
+      }
+
    }
+
    &__body {
+
       flex: 1 1 auto;
       padding: 10px 20px 35px;
    }
-   &__text {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
 
+   &__description {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      color: $grey;
    }
+
    &__img {
       overflow: hidden;
       max-width: 400px;
       height: 400px;
-      max-width: 500px;
+
       img {
          width: 100%;
          height: 100%;
          object-fit: cover;
       }
+   }
+
+   &__status {
+      font-size: 1.2rem;
+
    }
 
 }

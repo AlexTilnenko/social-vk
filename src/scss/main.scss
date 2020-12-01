@@ -4,6 +4,8 @@
 @import "./App";
 @import "../components/common/Pagination/Pagination";
 @import "../components/common/SearchField/SearchField";
+@import "../components/common/BtnFollowUnfollow/BtnFollowUnfollow";
+@import "../utils/createField/createField";
 @import "../components/Friends/Friend/Friend";
 @import "../components/Friends/Friends";
 @import "../components/Header/Header";
@@ -11,7 +13,9 @@
 @import "../components/Navbar/Navbar";
 @import "../components/Profile/Profile";
 @import "../components/Profile/ProfileStatus/ProfileStatus";
+@import "../components/Profile/ProfilePhoto/ProfilePhoto";
 @import "../components/Profile/MyPosts/MyPosts";
 @import "../components/Profile/MyPosts/Post/Post";
 @import "../components/Messages/Messages";
 @import "../components/Users/Users";
+@import "../components/Settings/Settings";

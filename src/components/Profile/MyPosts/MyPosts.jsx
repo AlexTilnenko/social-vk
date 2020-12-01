@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addPost, deletePost, likePost } from '../../../actions/posts';
 import PropTypes from 'prop-types';
 
-const MyPosts = React.memo(function MyPosts({ posts, avatar, userId, myId }) {
+const MyPosts = React.memo(function MyPosts({ posts, avatar, userId, myId, status, name }) {
    const dispatch = useDispatch();
 
    const [value, setValue] = useState('');
@@ -47,19 +47,56 @@ const MyPosts = React.memo(function MyPosts({ posts, avatar, userId, myId }) {
                </button>
             </form>
          )}
-         {posts.map((post) => {
-            return (
-               <Post
-                  post={post}
-                  avatar={avatar}
-                  key={post.id}
-                  onDeletePost={onDeletePost}
-                  onLikePost={onLikePost}
-                  myId={myId}
-                  userId={userId}
-               />
-            );
-         })}
+         {userId === myId ? (
+            <div className="my-posts_body">
+               {posts.map((post) => {
+                  return (
+                     <Post
+                        post={post}
+                        avatar={avatar}
+                        key={post.id}
+                        onDeletePost={onDeletePost}
+                        onLikePost={onLikePost}
+                        name={name}
+                        status={status}
+                        myId={myId}
+                        userId={userId}
+                     />
+                  );
+               })}
+            </div>
+         ) : (
+            <div>
+               <div>
+                  {status && (
+                     <Post
+                        post={posts[posts.length - 1]}
+                        avatar={avatar}
+                        onDeletePost={onDeletePost}
+                        onLikePost={onLikePost}
+                        name={name}
+                        status={status}
+                        myId={myId}
+                        userId={userId}
+                     />
+                  )}
+               </div>
+               <div>
+                  {avatar && (
+                     <Post
+                        post={posts[posts.length - 2]}
+                        avatar={avatar}
+                        onDeletePost={onDeletePost}
+                        onLikePost={onLikePost}
+                        name={name}
+                        myId={myId}
+                        userId={userId}
+                     />
+                  )}
+               </div>
+               {status || avatar ? '' : <div className="block post">{`${name} пока ничем не поделился(-лась)...`}</div>}
+            </div>
+         )}
       </div>
    );
 });

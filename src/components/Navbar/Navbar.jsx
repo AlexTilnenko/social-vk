@@ -39,22 +39,13 @@ function Navbar() {
                   <span>Пользователи</span>
                </Link>
             </li>
-
             <li className="navbar__list-item">
-               <a href="/" className="navbar__list-link">
-                  <svg className="navbar__list-ico">
-                     <use href={sprite + '#music'} />
-                  </svg>
-                  <span>Музыка</span>
-               </a>
-            </li>
-            <li className="navbar__list-item">
-               <a href="/" className="navbar__list-link">
+               <Link to="/settings" className="navbar__list-link">
                   <svg className="navbar__list-ico">
                      <use href={sprite + '#settings'} />
                   </svg>
                   <span>Настройки</span>
-               </a>
+               </Link>
             </li>
          </ul>
       </nav>

@@ -1,0 +1,61 @@
+.profile {
+   &__photo {
+      width: 100%;
+      max-width: 280px;
+      min-height: 280px;
+      overflow: hidden;
+      border-radius: $radius;
+      padding: 20px;
+      margin-left: 20px;
+      position: relative;
+
+      &:hover .update-photo__label {
+         transform: translateY(0);
+         opacity: 1;
+         visibility: visible;
+      }
+   }
+
+   &__img {
+      overflow: hidden;
+      border-radius: $radius;
+
+
+      img {
+         max-width: 100%;
+      }
+   }
+}
+
+.update-photo {
+   position: absolute;
+   bottom: 20px;
+   left: 20px;
+   width: calc(100% - 40px);
+
+   &__input {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+   }
+
+   &__label {
+      opacity: 0;
+      visibility: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 35px;
+      background-color: rgba($blue, 0.7);
+      color: $white;
+      transform: translateY(5px);
+      transition: all ease-in $duration;
+
+      &:hover {
+         background-color: rgba($blue, 0.9);
+
+      }
+   }
+}
